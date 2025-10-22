@@ -5,10 +5,10 @@ using UnityEngine.Splines;
 
 public class RoundView : MonoBehaviour
 {
-    [Header("Spline alapú kártyakör")]
     public SplineContainer circleSpline;
     public GameObject cardPrefab;
     public int cardCount = 10;
+
     public static Camera mainCamera;
     public float frontZOffset = 0.2f;
     public float circleTOffset = 0f;
@@ -109,7 +109,6 @@ public class RoundView : MonoBehaviour
         circleTOffset += 1f / cardCount;
 
         yield return null;
-        UpdateCardPositions();
 
         isMoving = false;
     }
