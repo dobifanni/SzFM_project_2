@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6185888111512842991}
   - component: {fileID: 1886144246903887005}
   - component: {fileID: 1662126300000290967}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 5967455114837579822}
   damage: {fileID: 3540065418526480001}
+  speed: {fileID: 0}
   imageSR: {fileID: 3522067658423902749}
   wrapper: {fileID: 4537987649898675783}
 --- !u!210 &1886144246903887005
@@ -78,7 +79,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -94,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2369908805440086192}
   - component: {fileID: 991812648363314387}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CardBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8369682290626442513}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +218,7 @@ GameObject:
   - component: {fileID: 1501807062784113933}
   - component: {fileID: 7804558081793461023}
   - component: {fileID: 3540065418526480001}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7467602137830546623}
   - component: {fileID: 3522067658423902749}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +481,7 @@ GameObject:
   - component: {fileID: 7990581111465635828}
   - component: {fileID: 5740763941718647063}
   - component: {fileID: 5967455114837579822}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
