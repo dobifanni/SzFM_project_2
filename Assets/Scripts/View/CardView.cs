@@ -1,7 +1,9 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class CardView : MonoBehaviour
 {
@@ -11,4 +13,22 @@ public class CardView : MonoBehaviour
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
 
+    public Card Card { get; private set; }
+    public System.Action<bool> OnSelected;
+    private bool isSelected = false;
+
+    public void Setup(Card card)
+    {
+        SetSelected(false);
+        Card = card;
+        health.text = card.Health.ToString();
+        damage.text = card.Damage.ToString();
+        speed.text = card.Speed.ToString();
+        imageSR.sprite = card.Image;
+    }
+
+    private void SetSelected(bool selected)
+    {
+        isSelected = selected;
+    }
 }
