@@ -13,5 +13,6 @@ public class Card
         this.cardData = cardData;
         Health = cardData.Health;
         Damage = cardData.Damage;
+        Speed = cardData.Speed;
     }
 }

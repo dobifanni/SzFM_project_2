@@ -3,19 +3,19 @@ using UnityEngine;
 public class TestSystem : MonoBehaviour
 {
     [SerializeField] private RoundView roundView;
-    [SerializeField] private CardData cardData;
+    [SerializeField] private FloorData floorData;
 
     void Start()
     {
-        // create up to 9 cards (or roundView.cardCount if smaller)
-        int desiredCount = Mathf.Min(roundView.cardCount, 9);
+        int createCount = Mathf.Min(roundView.cardCount, floorData.FloorCards.Count);
 
-        for (int i = 0; i < desiredCount; i++)
+        for (int i = 0; i < createCount; i++)
         {
-            Card card = new(cardData);
-            CardView cardView = CardViewCreator.Instance.CreateCardView(card, transform.position + Vector3.up * 0.01f * i, Quaternion.identity);
+            CardData cd = floorData.FloorCards[i];
+            Card card = new Card(cd);
 
-            // ensure the created view is active and add it to the round
+            CardView cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
+
             cardView.gameObject.SetActive(true);
             roundView.CreateCards(cardView);
         }

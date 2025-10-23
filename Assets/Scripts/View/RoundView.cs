@@ -9,11 +9,12 @@ public class RoundView : MonoBehaviour
     public GameObject cardPrefab;
     public int cardCount = 10;
 
+    [SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
+
     public static Camera mainCamera;
     public float frontZOffset = 0.2f;
     public float circleTOffset = 0f;
 
-    // fallback radius used when no spline is assigned
     public float fallbackRadius = 2f;
 
     // store CardView instances instead of raw GameObjects
@@ -26,7 +27,12 @@ public class RoundView : MonoBehaviour
     void Start()
     {
         if (!mainCamera) mainCamera = Camera.main;
-        UpdateCardPositions();
+
+        // If a FloorData asset is assigned in the inspector, populate from it on Start.
+        if (floorData != null)
+            PopulateFromFloor(floorData);
+        else
+            UpdateCardPositions();
     }
 
     private void Update()
@@ -49,7 +55,6 @@ public class RoundView : MonoBehaviour
             List<RaycastHit> validHits = new List<RaycastHit>();
             foreach (var hit in hits)
             {
-                // check whether the hit GameObject belongs to any CardView
                 if (cards.Exists(c => c.gameObject == hit.collider.gameObject))
                     validHits.Add(hit);
             }
@@ -81,8 +86,6 @@ public class RoundView : MonoBehaviour
             return;
         }
 
-        // parent under this transform so positions are managed by RoundView
-        // keep worldPositionStays = true; UpdateCardPositions will set the correct world positions
         cardView.transform.SetParent(transform, worldPositionStays: true);
         cards.Add(cardView);
 
@@ -96,6 +99,41 @@ public class RoundView : MonoBehaviour
         {
             if (cards.Count >= cardCount) break;
             CreateCards(cv);
+        }
+    }
+
+    // Populate RoundView from a FloorData list of CardData (dynamic count)
+    public void PopulateFromFloor(FloorData floor)
+    {
+        // clear existing
+        for (int i = cards.Count - 1; i >= 0; i--)
+        {
+            if (cards[i] != null)
+                Destroy(cards[i].gameObject);
+        }
+        cards.Clear();
+
+        if (floor == null || floor.FloorCards == null || floor.FloorCards.Count == 0)
+        {
+            UpdateCardPositions();
+            return;
+        }
+
+        int createCount = Mathf.Min(floor.FloorCards.Count, cardCount);
+
+        for (int i = 0; i < createCount; i++)
+        {
+            CardData cd = floor.FloorCards[i];
+            Card card = new Card(cd);
+
+            // create view via creator (expects a prefab set in CardViewCreator)
+            CardView cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
+
+            // ensure active so it is visible
+            cardView.gameObject.SetActive(true);
+
+            // add to round (this parents and calls UpdateCardPositions)
+            CreateCards(cardView);
         }
     }
 

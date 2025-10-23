@@ -382,6 +382,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardView
       objectReference: {fileID: 0}
+    - target: {fileID: 563906210372632188, guid: 9ab2a08b922afcb429e9d3e8e736d3fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376137926142350039, guid: 9ab2a08b922afcb429e9d3e8e736d3fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -995,8 +1003,10 @@ MonoBehaviour:
   circleSpline: {fileID: 639347053}
   cardPrefab: {fileID: 563906210372632188, guid: 9ab2a08b922afcb429e9d3e8e736d3fb, type: 3}
   cardCount: 10
+  floorData: {fileID: 0}
   frontZOffset: 0.2
   circleTOffset: 0
+  fallbackRadius: 2
 --- !u!1 &1495908908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundView: {fileID: 1105879143}
-  cardData: {fileID: 11400000, guid: 633da73c59bf91d45b1b68ba1a46c711, type: 2}
+  floorData: {fileID: 11400000, guid: 15834aac9dde4574f882548fdf524592, type: 2}
 --- !u!1 &1549650034
 GameObject:
   m_ObjectHideFlags: 0
