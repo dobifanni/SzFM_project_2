@@ -123,8 +123,8 @@ public class RoundView : MonoBehaviour
 
         for (int i = 0; i < createCount; i++)
         {
-            CardData cd = floor.FloorCards[i];
-            Card card = new Card(cd);
+            EnemyCardData cd = floor.FloorCards[i];
+            EnemyCard card = new EnemyCard(cd);
 
             // create view via creator (expects a prefab set in CardViewCreator)
             CardView cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);

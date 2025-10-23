@@ -13,11 +13,11 @@ public class CardView : MonoBehaviour
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
 
-    public Card Card { get; private set; }
+    public EnemyCard Card { get; private set; }
     public System.Action<bool> OnSelected;
     private bool isSelected = false;
 
-    public void Setup(Card card)
+    public void Setup(EnemyCard card)
     {
         SetSelected(false);
         Card = card;
