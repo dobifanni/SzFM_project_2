@@ -48,7 +48,7 @@ public class RoundView : MonoBehaviour
             SpawnDoorAtOrigin();
             doorSpawned = true;
         }
-
+        CheckSpeed();
     }
 
     void HandleRaycastInput()
@@ -198,12 +198,15 @@ public class RoundView : MonoBehaviour
         
     }
 
+    /**
+     * Flips all cards. Don't call in Update()!
+     */
     void FlipCards()
     {
         for (int i = 0; i < cards.Count; i++)
         {
             cards[i].Flip();
-            Debug.Log("flipped");
+            //Debug.Log("flipped");
         }
     }
 
@@ -239,6 +242,27 @@ public class RoundView : MonoBehaviour
         {
             if(cards[0].isFlipped) cards[0].Flip();
             if(cards[^1].isFlipped) cards[^1].Flip();
+        }
+    }
+
+    /**
+     * Checks the player's speed stat and updates the enemies' visuals accordingly
+     */
+    void CheckSpeed()
+    {
+        for(int i = 0; i < cards.Count; i++)
+        {
+
+            int speed = 2; //replace with player's speed
+            if (cards[i].Card.Speed < speed)
+            {
+                cards[i].speedUp.enabled = false;
+                cards[i].speedDown.enabled = true;
+            } else
+            {
+                cards[i].speedDown.enabled = false;
+                cards[i].speedUp.enabled = true;
+            }
         }
     }
     

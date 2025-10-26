@@ -13,11 +13,13 @@ public class CardView : MonoBehaviour
     [SerializeField] private TMP_Text speed;
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
+    [SerializeField] public SpriteRenderer speedUp;
+    [SerializeField] public SpriteRenderer speedDown;
 
     public EnemyCard Card { get; private set; }
     public System.Action<bool> OnSelected;
     private bool isSelected = false;
-    public bool isFlipped = false;
+    public bool isFlipped = false; //true means facing down, false means facing up
 
     public void Setup(EnemyCard card)
     {
