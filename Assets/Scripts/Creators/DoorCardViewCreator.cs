@@ -6,10 +6,11 @@ public class DoorCardViewCreator : Singleton<DoorCardViewCreator>
 
     public DoorCardView CreateDoorCardView(DoorCard card, Vector3 position, Quaternion rotation)
     {
-        DoorCardView doorcardView;
-        doorcardView = Instantiate(doorCardView, position, rotation);
-        doorcardView.Setup(card);
+        
+            var doorClone = Instantiate(doorCardView, position, rotation);
+            doorClone.Setup(card);
+        
 
-        return doorcardView;
+        return doorClone;
     }
 }

@@ -8,6 +8,7 @@ public class RoundView : MonoBehaviour
     public SplineContainer circleSpline;
     public GameObject cardPrefab;
     public int cardCount = 10;
+    [SerializeField] private DoorCardData doorCardData;
 
     [SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
 
@@ -20,6 +21,7 @@ public class RoundView : MonoBehaviour
     // store CardView instances instead of raw GameObjects
     private List<CardView> cards = new List<CardView>();
     private bool isMoving = false;
+    private bool doorSpawned = false;
 
     Ray ray;
     RaycastHit hit;
@@ -41,6 +43,12 @@ public class RoundView : MonoBehaviour
     private void Update()
     {
         HandleRaycastInput();
+        if (cards.Count == 0)
+        {
+            SpawnDoorAtOrigin();
+            doorSpawned = true;
+        }
+
     }
 
     void HandleRaycastInput()
@@ -227,6 +235,22 @@ public class RoundView : MonoBehaviour
 
         isMoving = false;
 
-        cards[0].Flip();
+        if (cards.Count > 0)
+        {
+            if(cards[0].isFlipped) cards[0].Flip();
+            if(cards[^1].isFlipped) cards[^1].Flip();
+        }
+    }
+    
+    void SpawnDoorAtOrigin()
+    {
+        if (doorSpawned) return;
+        DoorCard door = new DoorCard(doorCardData);
+        DoorCardView doorView =
+            DoorCardViewCreator.Instance.CreateDoorCardView(door, Vector3.zero, Quaternion.identity);
+
+        doorView.gameObject.SetActive(true);
+        // stays at world (0,0,0) as requested
+        doorSpawned = true;
     }
 }
