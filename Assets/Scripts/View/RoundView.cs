@@ -30,9 +30,12 @@ public class RoundView : MonoBehaviour
 
         // If a FloorData asset is assigned in the inspector, populate from it on Start.
         if (floorData != null)
+        {
             PopulateFromFloor(floorData);
-        else
-            UpdateCardPositions();
+        }
+        UpdateCardPositions();
+        FlipCards();
+        cards[0].Flip();
     }
 
     private void Update()
@@ -68,6 +71,8 @@ public class RoundView : MonoBehaviour
             for (int i = 0; i < activeCount; i++)
             {
                 GameObject hitCardGo = validHits[i].collider.gameObject;
+                var cardflip = cards.Find(c => c.gameObject == hitCardGo);
+                if (cardflip.isFlipped) return;
                 Debug.Log($"Kattintott kártya: {hitCardGo.name}");
                 RemoveFrontCard(hitCardGo);
             }
@@ -182,6 +187,16 @@ public class RoundView : MonoBehaviour
             // make the card face the camera forward vector (keeps orientation consistent)
             cards[i].transform.rotation = Quaternion.LookRotation(cameraForward);
         }
+        
+    }
+
+    void FlipCards()
+    {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            cards[i].Flip();
+            Debug.Log("flipped");
+        }
     }
 
     public void RemoveFrontCard(GameObject clickedCard)
@@ -211,5 +226,7 @@ public class RoundView : MonoBehaviour
         yield return null;
 
         isMoving = false;
+
+        cards[0].Flip();
     }
 }

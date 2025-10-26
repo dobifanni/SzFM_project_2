@@ -1,5 +1,6 @@
 using TMPro;
 using Unity.VisualScripting;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms;
@@ -16,6 +17,7 @@ public class CardView : MonoBehaviour
     public EnemyCard Card { get; private set; }
     public System.Action<bool> OnSelected;
     private bool isSelected = false;
+    public bool isFlipped = false;
 
     public void Setup(EnemyCard card)
     {
@@ -30,5 +32,11 @@ public class CardView : MonoBehaviour
     private void SetSelected(bool selected)
     {
         isSelected = selected;
+    }
+
+    public void Flip()
+    {
+        isFlipped = !isFlipped;
+        transform.DORotate(new(0, isFlipped ? 180f : 0f, 0), 2.25f);
     }
 }
