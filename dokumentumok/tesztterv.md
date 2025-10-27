@@ -29,8 +29,25 @@ Kártyák megjelennek a képernyőn.
 ## Lépések:
 - Mozgasd az egeret a kártyák fölé.
 - Kattints egy kártyára.
-- Próbáld meg áthelyezni vagy kijelölni (attól függően, mit enged a rendszer).
 
 ## Elvárt eredmény:
-- Kiválasztáskor a kártya vizuálisan jelezze az állapotát (pl. highlight).
-- A mozgatás vagy kijelölés megtörténik, és a rendszer nem dob hibát.
+- Kattintáskor a kártya eltűnik.
+- Az eltűnés megtörténik, és a rendszer nem dob hibát.
+
+
+# Teszt 3 – Adatbetöltés és adatmodell integritás
+
+## Cél: 
+Ellenőrizni, hogy a különböző Data-osztályok (DoorCardData, EnemyCardData, FloorData) helyesen töltődnek be.
+
+## Előfeltételek: 
+Fájlok vagy assetek elérhetők.
+
+## Lépések:
+- Játék indítása.
+- Nézd meg, hogy minden kártya-típus adatai megjelennek-e a játékban.
+- Ellenőrizd, hogy a modellek (DoorCardData, EnemyCardData) adatai megfelelnek a várt értékeknek.
+
+## Elvárt eredmény:
+- Az adatok helyesen jelennek meg a UI-ban.
+- Nem történik null reference vagy missing data hiba.
