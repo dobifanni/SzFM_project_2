@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/DoorCard")]
-public class DoorCardData : ScriptableObject
+public class DoorCardData : CardData
 {
-    [field: SerializeField] public Sprite Image { get; private set; }
+    [field: SerializeField] public string Description { get; private set; }
 }

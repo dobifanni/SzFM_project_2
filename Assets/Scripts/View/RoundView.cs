@@ -36,7 +36,7 @@ public class RoundView : MonoBehaviour
             PopulateFromFloor(floorData);
         }
         UpdateCardPositions();
-        FlipCards();
+        FlipAllCards();
         cards[0].Flip();
     }
 
@@ -136,11 +136,21 @@ public class RoundView : MonoBehaviour
 
         for (int i = 0; i < createCount; i++)
         {
-            EnemyCardData cd = floor.FloorCards[i];
-            EnemyCard card = new EnemyCard(cd);
+            CardData cd = floor.FloorCards[i];
 
-            // create view via creator (expects a prefab set in CardViewCreator)
-            CardView cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
+            // EnemyCard
+            if (cd is EnemyCardData enemyData)
+            {
+                var enemyCard = new EnemyCard(enemyData);
+                var enemyCardView = EnemyCardViewCreator.Instance.CreateEnemyCardView(enemyCard, transform.position, Quaternion.identity);
+                enemyCardView.gameObject.SetActive(true);
+                CreateCards(enemyCardView);
+                continue;
+            }
+         
+            var card = new Card(cd);
+            var cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
+
 
             // ensure active so it is visible
             cardView.gameObject.SetActive(true);
@@ -201,7 +211,7 @@ public class RoundView : MonoBehaviour
     /**
      * Flips all cards. Don't call in Update()!
      */
-    void FlipCards()
+    void FlipAllCards()
     {
         for (int i = 0; i < cards.Count; i++)
         {
@@ -254,14 +264,19 @@ public class RoundView : MonoBehaviour
         {
 
             int speed = 2; //replace with player's speed
-            if (cards[i].Card.Speed < speed)
+
+            if (cards[i] is EnemyCardView enemyCardView)
             {
-                cards[i].speedUp.enabled = false;
-                cards[i].speedDown.enabled = true;
-            } else
-            {
-                cards[i].speedDown.enabled = false;
-                cards[i].speedUp.enabled = true;
+                if (enemyCardView.EnemyCard.Speed < speed)
+                {
+                    enemyCardView.speedUp.enabled = false;
+                    enemyCardView.speedDown.enabled = true;
+                }
+                else
+                {
+                    enemyCardView.speedDown.enabled = false;
+                    enemyCardView.speedUp.enabled = true;
+                }
             }
         }
     }
@@ -270,11 +285,13 @@ public class RoundView : MonoBehaviour
     {
         if (doorSpawned) return;
         DoorCard door = new DoorCard(doorCardData);
-        DoorCardView doorView =
+        DoorCardView doorView = 
             DoorCardViewCreator.Instance.CreateDoorCardView(door, Vector3.zero, Quaternion.identity);
 
         doorView.gameObject.SetActive(true);
         // stays at world (0,0,0) as requested
         doorSpawned = true;
     }
+
+
 }

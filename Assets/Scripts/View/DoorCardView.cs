@@ -1,19 +1,21 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class DoorCardView : MonoBehaviour, IPointerClickHandler
+public class DoorCardView : CardView, IPointerClickHandler
 {
-    [SerializeField] private SpriteRenderer imageSR;
-    [SerializeField] private GameObject wrapper;
+    [SerializeField] private TMP_Text description;
 
-    public DoorCard Card { get; private set; }
+    public DoorCard DoorCard { get; private set; }
 
     public void Setup(DoorCard card)
     {
-        Card = card;
-        imageSR.sprite = card.Image;
+        base.Setup(card);
+
+        DoorCard = card;
+        description.text = card.Description;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -22,12 +24,12 @@ public class DoorCardView : MonoBehaviour, IPointerClickHandler
         ReloadCombatScene();
     }
 
-    // Fallback for regular physics clicks (requires collider on the GameObject)
+    /*// Fallback for regular physics clicks (requires collider on the GameObject)
     void OnMouseDown()
     {
         Debug.Log("Kattintva");
         ReloadCombatScene();
-    }
+    }*/
 
     // Public so it can be invoked from other scripts/tests if needed
     public void ReloadCombatScene()

@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class DoorCard
+public class DoorCard : Card
 {
-   
-    public Sprite Image { get => cardData.Image; }
+    public string Description { get; private set; }
 
-    private readonly DoorCardData cardData;
-    public DoorCard(DoorCardData cardData)
+    public DoorCard(DoorCardData cardData) : base(cardData)
     {
-        this.cardData = cardData;
+        Description = cardData.Description;
     }
 }
