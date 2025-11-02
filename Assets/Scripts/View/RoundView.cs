@@ -22,6 +22,9 @@ public class RoundView : MonoBehaviour
     private List<CardView> cards = new List<CardView>();
     private bool isMoving = false;
     private bool doorSpawned = false;
+    
+    [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
+    
 
     Ray ray;
     RaycastHit hit;
@@ -33,7 +36,7 @@ public class RoundView : MonoBehaviour
         // If a FloorData asset is assigned in the inspector, populate from it on Start.
         if (floorData != null)
         {
-            PopulateFromFloor(floorData);
+            cardViewSetupSystem.CardViewSetup(floorData, cards);
         }
         UpdateCardPositions();
         FlipAllCards();
@@ -84,79 +87,6 @@ public class RoundView : MonoBehaviour
                 Debug.Log($"Kattintott kártya: {hitCardGo.name}");
                 RemoveFrontCard(hitCardGo);
             }
-        }
-    }
-
-    // Add a single CardView to the round
-    public void CreateCards(CardView cardView)
-    {
-        if (cardView == null) return;
-
-        if (cards.Count >= cardCount)
-        {
-            Debug.LogWarning("RoundView: maximum card limit reached. Destroying extra card.");
-            Destroy(cardView.gameObject);
-            return;
-        }
-
-        cardView.transform.SetParent(transform, worldPositionStays: true);
-        cards.Add(cardView);
-
-        UpdateCardPositions();
-    }
-
-    // Overload to add multiple CardView instances at once
-    public void CreateCards(IEnumerable<CardView> cardViews)
-    {
-        foreach (var cv in cardViews)
-        {
-            if (cards.Count >= cardCount) break;
-            CreateCards(cv);
-        }
-    }
-
-    // Populate RoundView from a FloorData list of CardData (dynamic count)
-    public void PopulateFromFloor(FloorData floor)
-    {
-        // clear existing
-        for (int i = cards.Count - 1; i >= 0; i--)
-        {
-            if (cards[i] != null)
-                Destroy(cards[i].gameObject);
-        }
-        cards.Clear();
-
-        if (floor == null || floor.FloorCards == null || floor.FloorCards.Count == 0)
-        {
-            UpdateCardPositions();
-            return;
-        }
-
-        int createCount = Mathf.Min(floor.FloorCards.Count, cardCount);
-
-        for (int i = 0; i < createCount; i++)
-        {
-            CardData cd = floor.FloorCards[i];
-
-            // EnemyCard
-            if (cd is EnemyCardData enemyData)
-            {
-                var enemyCard = new EnemyCard(enemyData);
-                var enemyCardView = EnemyCardViewCreator.Instance.CreateEnemyCardView(enemyCard, transform.position, Quaternion.identity);
-                enemyCardView.gameObject.SetActive(true);
-                CreateCards(enemyCardView);
-                continue;
-            }
-         
-            var card = new Card(cd);
-            var cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
-
-
-            // ensure active so it is visible
-            cardView.gameObject.SetActive(true);
-
-            // add to round (this parents and calls UpdateCardPositions)
-            CreateCards(cardView);
         }
     }
 

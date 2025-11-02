@@ -153,6 +153,7 @@ Transform:
   - {fileID: 1102148510}
   - {fileID: 295023234}
   - {fileID: 1105879141}
+  - {fileID: 2125737422}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &114915040
@@ -810,7 +811,52 @@ Transform:
   m_Children:
   - {fileID: 643690421}
   - {fileID: 1541367909}
+  - {fileID: 953614368}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &953614366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 953614368}
+  - component: {fileID: 953614367}
+  m_Layer: 0
+  m_Name: CardViewSetupSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &953614367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953614366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bc4853616a41e6ae1d0a0eeb988d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &953614368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953614366}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 838769835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -953,6 +999,7 @@ Transform:
   - {fileID: 1970544529}
   - {fileID: 1140184716}
   - {fileID: 1144040136}
+  - {fileID: 1318916180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1102148510 stripped
@@ -1024,6 +1071,7 @@ MonoBehaviour:
   frontZOffset: 0.2
   circleTOffset: 0
   fallbackRadius: 2
+  cardViewSetupSystem: {fileID: 953614367}
 --- !u!1 &1140184715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1162,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCardView: {fileID: 1102148513}
+--- !u!1 &1318916179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318916180}
+  - component: {fileID: 1318916181}
+  m_Layer: 0
+  m_Name: HealCardViewCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318916180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318916179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1097802522}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1318916181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318916179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9ea17a5a6247c29117ab69455b70d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healCardView: {fileID: 3289565527722368626, guid: b233464196e12e2a593f3888123de170, type: 3}
+--- !u!212 &1427099089 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2919591697327553064, guid: b233464196e12e2a593f3888123de170, type: 3}
+  m_PrefabInstance: {fileID: 1988787505072252631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1442517127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,6 +1467,7 @@ MonoBehaviour:
   roundView: {fileID: 1105879143}
   floorData: {fileID: 11400000, guid: 15834aac9dde4574f882548fdf524592, type: 2}
   doorCardData: {fileID: 11400000, guid: 28db21b1262eb5d44b5a184d2b2e56d6, type: 2}
+  doorSpawned: 0
 --- !u!1 &1549650034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2452,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &2125737422 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+  m_PrefabInstance: {fileID: 1988787505072252631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &854023824778177601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2414,6 +2518,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3739e37079ed6f147999e49d75b7a6d1, type: 3}
+--- !u!1001 &1988787505072252631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 107022194}
+    m_Modifications:
+    - target: {fileID: 3289565527722368626, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: imageSR
+      value: 
+      objectReference: {fileID: 1427099089}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7925811154660934403, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_Name
+      value: HealCardView
+      objectReference: {fileID: 0}
+    - target: {fileID: 7925811154660934403, guid: b233464196e12e2a593f3888123de170, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b233464196e12e2a593f3888123de170, type: 3}
 --- !u!4 &3355610825350977464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 128685405004916589, guid: 3739e37079ed6f147999e49d75b7a6d1, type: 3}

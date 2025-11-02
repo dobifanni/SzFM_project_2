@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using UnityEngine;
 
 public class TestSystem : MonoBehaviour
@@ -56,4 +56,4 @@ public class TestSystem : MonoBehaviour
 
     }
 
-}
+}*/
