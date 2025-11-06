@@ -35,15 +35,17 @@ public class CardViewSetupSystem : MonoBehaviour
                 cards.Add(enemyCardView);
                 continue;
             }
+            // HealCard
             else if (cd is HealCardData healData)
             {
                 var healCard = new HealCard(healData);
-                var healCardView =  HealCardViewCreator.Instance.CreateHealCardView(healCard, transform.position, Quaternion.identity);
+                var healCardView = HealCardViewCreator.Instance.CreateHealCardView(healCard, transform.position, Quaternion.identity);
                 healCardView.gameObject.SetActive(true);
                 healCardView.transform.SetParent(transform, worldPositionStays: true);
                 cards.Add(healCardView);
                 continue;
             }
+            // StatupCard
             else if (cd is StatupCardData statupData)
             {
                 var statupCard = new StatupCard(statupData);

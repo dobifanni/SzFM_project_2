@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 1202166111651836221}
   - component: {fileID: 7151275082344404227}
   - component: {fileID: 4137108395620738275}
-  - component: {fileID: 1016390649965836452}
+  - component: {fileID: 6214584789881970876}
   m_Layer: 0
   m_Name: StatupCardView
   m_TagString: Untagged
@@ -430,7 +430,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.6, y: 4.8, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1016390649965836452
+--- !u!114 &6214584789881970876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,13 +439,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6329615939175305713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 200cc58388f8415780c7e2bde6f00202, type: 3}
+  m_Script: {fileID: 11500000, guid: 152373f5c0c5c8f46b07e06ddf3fb5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   imageSR: {fileID: 8983626821878743636}
   wrapper: {fileID: 5373781372248609186}
   isFlipped: 0
-  healing: {fileID: 2164931299394939438}
+  statAmount: {fileID: 2164931299394939438}
 --- !u!1 &6885460566793482084
 GameObject:
   m_ObjectHideFlags: 0

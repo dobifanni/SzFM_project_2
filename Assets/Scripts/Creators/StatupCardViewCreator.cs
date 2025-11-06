@@ -6,10 +6,8 @@ public class StatCardViewCreator : Singleton<StatCardViewCreator>
 
     public StatupCardView CreateStatupCardView(StatupCard card, Vector3 position, Quaternion rotation)
     {
-
         var statupClone = Instantiate(statupCardView, position, rotation);
         statupClone.Setup(card);
-
 
         return statupClone;
     }
