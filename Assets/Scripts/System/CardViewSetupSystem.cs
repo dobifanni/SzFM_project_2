@@ -44,7 +44,16 @@ public class CardViewSetupSystem : MonoBehaviour
                 cards.Add(healCardView);
                 continue;
             }
-         
+            else if (cd is StatupCardData statupData)
+            {
+                var statupCard = new StatupCard(statupData);
+                var statupCardView = StatCardViewCreator.Instance.CreateStatupCardView(statupCard, transform.position, Quaternion.identity);
+                statupCardView.gameObject.SetActive(true);
+                statupCardView.transform.SetParent(transform, worldPositionStays: true);
+                cards.Add(statupCardView);
+                continue;
+            }
+
             var card = new Card(cd);
             var cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
 
