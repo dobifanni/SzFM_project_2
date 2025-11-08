@@ -16,6 +16,8 @@ public class PaladinButtonUI : MonoBehaviour
         speedText.text = paladin.Speed.ToString();
         damageText.text = paladin.Damage.ToString();
         healthText.text = paladin.Health.ToString();
+
+        FloorCounterSystem.FloorCount = 1;
     }
     
     public void Palyatoltes(string sceneNev)

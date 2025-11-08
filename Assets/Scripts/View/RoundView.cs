@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
@@ -31,6 +33,8 @@ public class RoundView : MonoBehaviour
 
     void Start()
     {
+        floorData = Resources.Load<FloorData>("Data/Floor/Floor" + FloorCounterSystem.FloorCount.ToString()); //+ FloorCounterSystem.FloorCount.ToString() +".asset");
+        Debug.Log(floorData);
         if (!mainCamera) mainCamera = Camera.main;
 
         // If a FloorData asset is assigned in the inspector, populate from it on Start.

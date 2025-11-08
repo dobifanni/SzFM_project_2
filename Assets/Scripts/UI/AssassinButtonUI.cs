@@ -16,6 +16,8 @@ public class AssassinButtonUI : MonoBehaviour
         speedText.text = assassin.Speed.ToString();
         damageText.text = assassin.Damage.ToString();
         healthText.text = assassin.Health.ToString();
+        
+        FloorCounterSystem.FloorCount = 1;
     }
     
     public void Palyatoltes(string sceneNev)

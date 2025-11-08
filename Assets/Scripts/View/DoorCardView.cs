@@ -21,7 +21,17 @@ public class DoorCardView : CardView, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("DoorCardView: OnPointerClick");
-        ReloadCombatScene();
+        if (FloorCounterSystem.FloorCount == 5)
+        {
+            SceneManager.LoadScene("MainMenuScene");
+            Debug.Log("Kifogytak a szintek"); //Majd valaki lekezeli mi van ilyenkor, ehhez már késő van
+        }
+        else
+        {
+            FloorCounterSystem.FloorNumberUp();
+            ReloadCombatScene();
+        }
+        
     }
 
     /*// Fallback for regular physics clicks (requires collider on the GameObject)

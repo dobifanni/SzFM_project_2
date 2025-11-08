@@ -29,6 +29,6 @@ public class CardView : MonoBehaviour
     public void Flip()
     {
         isFlipped = !isFlipped;
-        transform.DORotate(new(0, isFlipped ? 180f : 0f, 0), 2.25f);
+        transform.DORotate(new(0, isFlipped ? 180f : 0f, 0), 0.55f);
     }
 }
