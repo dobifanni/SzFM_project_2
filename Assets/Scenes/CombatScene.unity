@@ -3436,7 +3436,7 @@ GameObject:
   - component: {fileID: 2067592933}
   - component: {fileID: 2067592934}
   m_Layer: 0
-  m_Name: MatchSetupSystem
+  m_Name: MatchHandlerSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

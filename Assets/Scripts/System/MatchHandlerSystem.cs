@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MatchSetupSystem : MonoBehaviour
+public class MatchHandlerSystem : MonoBehaviour
 {
     //[SerializeField] private HeroData heroData;
     public static HeroData heroData { get; set;}
