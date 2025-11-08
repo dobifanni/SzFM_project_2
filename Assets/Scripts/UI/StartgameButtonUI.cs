@@ -1,10 +1,13 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class StartgameButtonUI : MonoBehaviour
 {
     
-    public void Palyatoltes(string sceneNev)
+    [SerializeField] private GameObject HeroSelectMenu;
+
+    public void OnClick(bool ertek)
     {
-        SceneManager.LoadScene(sceneNev);
+        HeroSelectMenu.SetActive(ertek);
     }
 }
