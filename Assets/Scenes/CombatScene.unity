@@ -360,6 +360,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79252042}
   m_CullTransparentMesh: 1
+--- !u!1 &88906938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88906939}
+  - component: {fileID: 88906940}
+  m_Layer: 0
+  m_Name: RemoveCardSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &88906939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88906938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 838769835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88906940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88906938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59880b6d93d98284cb7ce8734d54bcf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMoving: 0
+  RoundView: {fileID: 1105879143}
 --- !u!1 &107022193
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,9 +439,9 @@ Transform:
   - {fileID: 3355610825350977464}
   - {fileID: 1102148510}
   - {fileID: 295023234}
-  - {fileID: 1105879141}
   - {fileID: 2125737422}
   - {fileID: 1606542987046912698}
+  - {fileID: 1105879141}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &114915040
@@ -1479,6 +1525,10 @@ Transform:
   - {fileID: 953614368}
   - {fileID: 2067592933}
   - {fileID: 1668586788}
+  - {fileID: 1989348457}
+  - {fileID: 1340859347}
+  - {fileID: 88906939}
+  - {fileID: 2019834067}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &951498329
@@ -1854,10 +1904,11 @@ MonoBehaviour:
   circleSpline: {fileID: 639347053}
   floorData: {fileID: 11400000, guid: 15834aac9dde4574f882548fdf524592, type: 2}
   doorCardData: {fileID: 11400000, guid: 28db21b1262eb5d44b5a184d2b2e56d6, type: 2}
+  cardViewSetupSystem: {fileID: 953614367}
+  RemoveCardSystem: {fileID: 88906940}
   frontZOffset: 0.2
   circleTOffset: 0
   fallbackRadius: 2
-  cardViewSetupSystem: {fileID: 953614367}
 --- !u!1 &1140184715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,6 +2044,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healCardView: {fileID: 3289565527722368626, guid: b233464196e12e2a593f3888123de170, type: 3}
+--- !u!1 &1340859346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1340859347}
+  - component: {fileID: 1340859348}
+  m_Layer: 0
+  m_Name: FloorCounterSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1340859347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340859346}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 838769835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340859348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340859346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d7daf953cd43ac89bc105eea3945d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1356534063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,6 +3134,50 @@ Transform:
   - {fileID: 2029484771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1989348456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1989348457}
+  - component: {fileID: 1989348458}
+  m_Layer: 0
+  m_Name: SpawnDoorSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1989348457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989348456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 838769835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1989348458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989348456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1ee8017bc74879bfe481bccc122177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2010134761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,6 +3314,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010134761}
   m_CullTransparentMesh: 1
+--- !u!1 &2019834066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019834067}
+  - component: {fileID: 2019834068}
+  m_Layer: 0
+  m_Name: CheckSpeedSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2019834067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019834066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 838769835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2019834068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019834066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d54f2c04a64d4dbbe474417bd07f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2024092339
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,6 +3652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579427b6842e19940831786cd7c2bd8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roundView: {fileID: 1105879143}
+  SpawnDoorSystem: {fileID: 1989348458}
 --- !u!4 &2125737422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5302974792190444289, guid: b233464196e12e2a593f3888123de170, type: 3}
@@ -3700,5 +3885,5 @@ SceneRoots:
   - {fileID: 813212745}
   - {fileID: 1973845403}
   - {fileID: 107022194}
-  - {fileID: 838769835}
   - {fileID: 1097802522}
+  - {fileID: 838769835}

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardViewSetupSystem : MonoBehaviour
+public class CardViewSetupSystem : Singleton<CardViewSetupSystem>
 {
     public void CardViewSetup(FloorData floor, List<CardView> cards)
     {

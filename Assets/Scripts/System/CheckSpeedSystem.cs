@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CheckSpeedSystem : MonoBehaviour
+public class CheckSpeedSystem : Singleton<CheckSpeedSystem>
 {
     public static void CheckSpeed()
     {

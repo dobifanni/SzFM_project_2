@@ -9,21 +9,19 @@ public class RoundView : MonoBehaviour
 {
     public SplineContainer circleSpline;
     [SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
-    [SerializeField] private DoorCardData doorCardData;
-    
+    [SerializeField] public DoorCardData doorCardData;
+
+    [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
+    [SerializeField] private RemoveCardSystem RemoveCardSystem;
+
     public static Camera mainCamera;
     public float frontZOffset = 0.2f;
     public float circleTOffset = 0f;
-
     public float fallbackRadius = 2f;
 
     // store CardView instances instead of raw GameObjects
     public static List<CardView> cards = new List<CardView>();
-    private bool isMoving = false;
     public static bool doorSpawned = false;
-    
-    [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
-    
 
     Ray ray;
     RaycastHit hit;
@@ -49,16 +47,11 @@ public class RoundView : MonoBehaviour
     private void Update()
     {
         HandleRaycastInput();
-        if (cards.Count == 0)
-        {
-            SpawnDoorSystem.SpawnDoorAtOrigin(doorCardData);
-        }
-        CheckSpeedSystem.CheckSpeed();
     }
 
     void HandleRaycastInput()
     {
-        if (isMoving || cards.Count == 0) return;
+        if (RemoveCardSystem.isMoving || cards.Count == 0) return;
 
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -87,7 +80,7 @@ public class RoundView : MonoBehaviour
                 var cardflip = cards.Find(c => c.gameObject == hitCardGo);
                 if (cardflip.isFlipped) return;
                 Debug.Log($"Kattintott kártya: {hitCardGo.name}");
-                RemoveFrontCard(hitCardGo);
+                RemoveCardSystem.RemoveFrontCard(hitCardGo);
             }
         }
     }
@@ -149,41 +142,6 @@ public class RoundView : MonoBehaviour
         {
             cards[i].Flip();
             //Debug.Log("flipped");
-        }
-    }
-
-    public void RemoveFrontCard(GameObject clickedCard)
-    {
-        if (isMoving) return;
-
-        CardView cv = cards.Find(c => c.gameObject == clickedCard);
-        if (cv == null) return;
-
-        StartCoroutine(RemoveAndShift(cv));
-    }
-
-    System.Collections.IEnumerator RemoveAndShift(CardView clickedCard)
-    {
-        isMoving = true;
-
-        if (clickedCard != null)
-        {
-            // remove and destroy the view object
-            cards.Remove(clickedCard);
-            Destroy(clickedCard.gameObject);
-        }
-
-        // shift offset by the fraction based on the number of cards before removal
-        circleTOffset += 1f / Mathf.Max(1, (cards.Count + 1));
-
-        yield return null;
-
-        isMoving = false;
-
-        if (cards.Count > 0)
-        {
-            if(cards[0].isFlipped) cards[0].Flip();
-            if(cards[^1].isFlipped) cards[^1].Flip();
         }
     }
 }

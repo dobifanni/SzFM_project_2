@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnDoorSystem : MonoBehaviour
+public class SpawnDoorSystem : Singleton<SpawnDoorSystem>
 {
     public static void SpawnDoorAtOrigin(DoorCardData doorCardData)
     {
