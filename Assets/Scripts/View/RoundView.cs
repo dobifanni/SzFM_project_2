@@ -8,12 +8,9 @@ using UnityEngine.Splines;
 public class RoundView : MonoBehaviour
 {
     public SplineContainer circleSpline;
-    public GameObject cardPrefab;
-    public int cardCount = 10;
-    [SerializeField] private DoorCardData doorCardData;
-
     [SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
-
+    [SerializeField] private DoorCardData doorCardData;
+    
     public static Camera mainCamera;
     public float frontZOffset = 0.2f;
     public float circleTOffset = 0f;
@@ -21,9 +18,9 @@ public class RoundView : MonoBehaviour
     public float fallbackRadius = 2f;
 
     // store CardView instances instead of raw GameObjects
-    private List<CardView> cards = new List<CardView>();
+    public static List<CardView> cards = new List<CardView>();
     private bool isMoving = false;
-    private bool doorSpawned = false;
+    public static bool doorSpawned = false;
     
     [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
     
@@ -42,6 +39,8 @@ public class RoundView : MonoBehaviour
         {
             cardViewSetupSystem.CardViewSetup(floorData, cards);
         }
+
+        doorSpawned = false;
         UpdateCardPositions();
         FlipAllCards();
         cards[0].Flip();
@@ -52,10 +51,9 @@ public class RoundView : MonoBehaviour
         HandleRaycastInput();
         if (cards.Count == 0)
         {
-            SpawnDoorAtOrigin();
-            doorSpawned = true;
+            SpawnDoorSystem.SpawnDoorAtOrigin(doorCardData);
         }
-        CheckSpeed();
+        CheckSpeedSystem.CheckSpeed();
     }
 
     void HandleRaycastInput()
@@ -188,44 +186,4 @@ public class RoundView : MonoBehaviour
             if(cards[^1].isFlipped) cards[^1].Flip();
         }
     }
-
-    /**
-     * Checks the player's speed stat and updates the enemies' visuals accordingly
-     */
-    void CheckSpeed()
-    {
-        for(int i = 0; i < cards.Count; i++)
-        {
-
-            int speed = 2; //replace with player's speed
-
-            if (cards[i] is EnemyCardView enemyCardView)
-            {
-                if (enemyCardView.EnemyCard.Speed < speed)
-                {
-                    enemyCardView.speedUp.enabled = false;
-                    enemyCardView.speedDown.enabled = true;
-                }
-                else
-                {
-                    enemyCardView.speedDown.enabled = false;
-                    enemyCardView.speedUp.enabled = true;
-                }
-            }
-        }
-    }
-    
-    void SpawnDoorAtOrigin()
-    {
-        if (doorSpawned) return;
-        DoorCard door = new DoorCard(doorCardData);
-        DoorCardView doorView = 
-            DoorCardViewCreator.Instance.CreateDoorCardView(door, Vector3.zero, Quaternion.identity);
-
-        doorView.gameObject.SetActive(true);
-        // stays at world (0,0,0) as requested
-        doorSpawned = true;
-    }
-
-
 }
