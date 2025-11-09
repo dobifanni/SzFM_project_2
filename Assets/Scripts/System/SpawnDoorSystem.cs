@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnDoorSystem : Singleton<SpawnDoorSystem>
 {
-    public static void SpawnDoorAtOrigin(DoorCardData doorCardData)
+    public void SpawnDoorAtOrigin(DoorCardData doorCardData)
     {
         if (RoundView.doorSpawned) return;
         DoorCard door = new DoorCard(doorCardData);

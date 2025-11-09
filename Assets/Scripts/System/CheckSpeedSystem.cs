@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CheckSpeedSystem : Singleton<CheckSpeedSystem>
 {
-    public static void CheckSpeed()
+    public void CheckSpeed()
     {
         for(int i = 0; i < RoundView.cards.Count; i++)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 public class MatchHandlerSystem : Singleton<MatchHandlerSystem>
 {
     [SerializeField] private RoundView roundView;
-    [SerializeField] private SpawnDoorSystem SpawnDoorSystem;
+    
 
     //[SerializeField] private HeroData heroData;
     public static HeroData heroData { get; set;}
@@ -17,8 +17,8 @@ public class MatchHandlerSystem : Singleton<MatchHandlerSystem>
     {
         if (RoundView.cards.Count == 0)
         {
-            SpawnDoorSystem.SpawnDoorAtOrigin(roundView.doorCardData);
+            SpawnDoorSystem.Instance.SpawnDoorAtOrigin(roundView.doorCardData);
         }
-        CheckSpeedSystem.CheckSpeed();
+        CheckSpeedSystem.Instance.CheckSpeed();
     }
 }

@@ -16,12 +16,24 @@ public class HeroStatSystem : Singleton<HeroStatSystem>
         MaxHealth = CurrentHealth = heroData.Health;
         CurrentDamage = heroData.Damage;
         CurrentSpeed = heroData.Speed;
-        HeroStats.GetComponentInChildren<HealthUI>().UpdateHPText(heroData.Health);
-        HeroStats.GetComponentInChildren<DamageUI>().UpdateDamageText(heroData.Damage);
-        HeroStats.GetComponentInChildren<SpeedUI>().UpdateSpeedText(heroData.Speed);
+        CallHPuiUpdate(heroData.Health);
+        CallDamageuiUpdate(heroData.Damage);
+        CallSpeeduiUpdate(heroData.Speed);
+    }
+    public void CallHPuiUpdate(int amount)
+    {
+        HeroStats.GetComponentInChildren<HealthUI>().UpdateHPText(amount);
     }
 
-    
+    public void CallDamageuiUpdate(int amount)
+    {
+        HeroStats.GetComponentInChildren<DamageUI>().UpdateDamageText(amount);
+    }
+
+    public void CallSpeeduiUpdate(int amount)
+    {
+        HeroStats.GetComponentInChildren<SpeedUI>().UpdateSpeedText(amount);
+    }
 
     // Update is called once per frame
     void Update()
