@@ -9,9 +9,9 @@
 
 ### Szerepkörök
 
-- Tervező:
-- Tesztelő: 
-- Designer:
+- Tervező: A projekt szakmai és fejlesztési irányvonalának meghatározásáért felelős. Feladata a dokumentációk vezetése, a fejlesztési folyamatok nyomon követése és a Trello-feladatkezelő rendszer karbantartása. A Tervező hozza létre és osztja ki a feladatokat a csapattagok számára, valamint fejlesztői szerepet is ellát, kódot ír és részt vesz a program funkcionalitásának kialakításában.
+- Tesztelő: A program működésének ellenőrzéséért és minőségbiztosításáért felelős. Feladata a unit tesztek megírása, futtatása és a teszteredmények dokumentálása. Gondoskodik arról, hogy a kód megfeleljen a tervezett követelményeknek, és segíti a hibák feltárását és javítását a fejlesztési folyamat során.
+- Designer: A projekt vizuális megjelenítéséért felelős. Feladata a felhasználói felület és a játékelemek grafikai megtervezése, valamint a vizuális elemek integrálása a Unity környezetbe. A Designer biztosítja a játék esztétikailag egységes és felhasználóbarát megjelenését.
 
 ### Ütemterv és mérföldkövek
 #### Sprint 1 – Fejlesztés
@@ -56,24 +56,26 @@ Rendszerszereplők:
 Használati esetek és lefutásaik:
 
 - játékos főmenüben elindítja a játékmenetet
-
+![Elindítás](./images/usecase/Elindítás.png)
 - játékos megállítja a játékot majd folytatja
-
+![Folytatás](./images/usecase/MenüFolytatás.png)
 - játékos megállítja a játékot majd kilép a főmenübe
-
+![Kilépés](./images/usecase/MenüKilépés.png)
 - játékos harcol egy ellenség kártyával és győz
-
+![EllenségharcGyőzelem](./images/usecase/EllenségharcGyőz.png)
 - játékos harcol egy ellenség kártyával és veszít
-
+![EllenségharcVeszteség](./images/usecase/EllenségharcVeszít.png)
 - játékos gyógyít egy gyógyítás kártyával
-
+![Gyógyítás](./images/usecase/Gyógyítás.png)
 - játékos fejleszt egy fejlesztés kártyával
-
+![Statup](./images/usecase/Statup.png)
 - játékos végigviszi a szintet és továbbmegy egy ajtó kártyával
-
+![AjtóTovább](./images/usecase/AjtóTovább.png)
 - játékos ajtó kártyával speciális szintre jut
-
+![AjtóSpeciál](./images/usecase/AjtóSpeciális.png)
 - játékos végigvitte a játékot és nyert
+![FinalVictory](./images/usecase/Victory.png)
+
 
 ## Architekturális terv
 ### Frontend
