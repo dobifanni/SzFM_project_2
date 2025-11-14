@@ -1,0 +1,11 @@
+Lajos felkeresi, majd megnyitja a kedvenc játékát,
+a kezdő platformon elindítja a Start gombbal,
+kiválasztja melyik hőssel szeretne játszani,
+megjelennek az első kör kártyái lefordítva,
+rákattint mindegyikre egyesével,
+a szomszédos kártyák felfordulnak,
+az utolsó kártyára is rákattint és megjelenik az ajtó,
+rákattint az ajtóra és továbbvisz a következő körre,
+így végigmegy az összes körön,
+visszatér a kezdő menübe,
+majd kilép a játékból.
