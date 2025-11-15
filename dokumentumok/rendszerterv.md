@@ -56,6 +56,7 @@ Rendszerszereplők:
 Használati esetek és lefutásaik:
 
 - játékos főmenüben elindítja a játékmenetet
+
 ![Elindítás](./images/usecase/Elindítás.png)
 - játékos megállítja a játékot majd folytatja
 
@@ -64,18 +65,25 @@ Használati esetek és lefutásaik:
 
 ![Kilépés](./images/usecase/MenüKilépés.png)
 - játékos harcol egy ellenség kártyával és győz
+
 ![EllenségharcGyőzelem](./images/usecase/EllenségharcGyőz.png)
 - játékos harcol egy ellenség kártyával és veszít
+
 ![EllenségharcVeszteség](./images/usecase/EllenségharcVeszít.png)
 - játékos gyógyít egy gyógyítás kártyával
+
 ![Gyógyítás](./images/usecase/Gyógyítás.png)
 - játékos fejleszt egy fejlesztés kártyával
+
 ![Statup](./images/usecase/Statup.png)
 - játékos végigviszi a szintet és továbbmegy egy ajtó kártyával
+
 ![AjtóTovább](./images/usecase/AjtóTovább.png)
 - játékos ajtó kártyával speciális szintre jut
+
 ![AjtóSpeciál](./images/usecase/AjtóSpeciális.png)
 - játékos végigvitte a játékot és nyert
+
 ![FinalVictory](./images/usecase/Victory.png)
 
 
