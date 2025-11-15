@@ -13,6 +13,9 @@ public class RemoveCardSystem : Singleton<RemoveCardSystem>
         CardView cv = RoundView.cards.Find(c => c.gameObject == clickedCard);
         if (cv == null) return;
 
+        EnemyTurnGA enemyTurnGA = new();
+        ActionSystem.Instance.Perform(enemyTurnGA);
+
         StartCoroutine(RemoveAndShift(cv));
     }
 
@@ -23,6 +26,9 @@ public class RemoveCardSystem : Singleton<RemoveCardSystem>
         if (clickedCard != null)
         {
             // remove and destroy the view object
+
+            
+
             RoundView.cards.Remove(clickedCard);
             Destroy(clickedCard.gameObject);
         }
