@@ -58,8 +58,10 @@ Használati esetek és lefutásaik:
 - játékos főmenüben elindítja a játékmenetet
 ![Elindítás](./images/usecase/Elindítás.png)
 - játékos megállítja a játékot majd folytatja
+
 ![Folytatás](./images/usecase/MenüFolytatás.png)
 - játékos megállítja a játékot majd kilép a főmenübe
+
 ![Kilépés](./images/usecase/MenüKilépés.png)
 - játékos harcol egy ellenség kártyával és győz
 ![EllenségharcGyőzelem](./images/usecase/EllenségharcGyőz.png)
