@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using NUnit.Framework;
 using UnityEngine;
 
 public class CardViewSetupSystem : Singleton<CardViewSetupSystem>
@@ -23,8 +25,8 @@ public class CardViewSetupSystem : Singleton<CardViewSetupSystem>
 
         for (int i = 0; i < createCount; i++)
         {
+            ShuffleCards(floor.FloorCards);
             CardData cd = floor.FloorCards[i];
-
             // EnemyCard
             if (cd is EnemyCardData enemyData)
             {
@@ -65,6 +67,15 @@ public class CardViewSetupSystem : Singleton<CardViewSetupSystem>
 
             // add to round (this parents and calls UpdateCardPositions)
             //CreateCards(cardView);
+        }
+    }
+
+    void ShuffleCards<CardData>(List<CardData> cards)
+    {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            int RandomIndex = UnityEngine.Random.Range(0, cards.Count);
+            (cards[i], cards[RandomIndex]) = (cards[RandomIndex], cards[i]);
         }
     }
 }
