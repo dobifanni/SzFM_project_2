@@ -6,4 +6,9 @@ public class FloorCounterSystem : Singleton<FloorCounterSystem>
     {
         FloorCount++;
     }
+
+    public static void FloorNumberDown()
+    {
+        FloorCount--;
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -8,16 +9,22 @@ using UnityEngine.Splines;
 public class RoundView : MonoBehaviour
 {
     public SplineContainer circleSpline;
-    [SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
+    //[SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
     [SerializeField] public DoorCardData doorCardData;
+    [SerializeField] private GameObject victoryScreen;
 
     [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
     [SerializeField] private RemoveCardSystem RemoveCardSystem;
+    [SerializeField] private FloorSelectSystem FloorSelectSystem;
 
     public static Camera mainCamera;
     public float frontZOffset = 0.2f;
     public float circleTOffset = 0f;
     public float fallbackRadius = 2f;
+    public static float rnd;
+    public static bool lastFloorWasSpecial;
+    public static bool lastFloorWasEncounter;
+
 
     // store CardView instances instead of raw GameObjects
     public static List<CardView> cards = new List<CardView>();
@@ -28,25 +35,32 @@ public class RoundView : MonoBehaviour
 
     void Start()
     {
-        floorData = Resources.Load<FloorData>("Data/Floor/Floor" + FloorCounterSystem.FloorCount.ToString()); //+ FloorCounterSystem.FloorCount.ToString() +".asset");
-        Debug.Log(floorData);
+        rnd = UnityEngine.Random.value;
         if (!mainCamera) mainCamera = Camera.main;
-
-        // If a FloorData asset is assigned in the inspector, populate from it on Start.
-        if (floorData != null)
-        {
-            cardViewSetupSystem.CardViewSetup(floorData, cards);
-        }
-
         doorSpawned = false;
-        UpdateCardPositions();
-        FlipAllCards();
-        cards[0].Flip();
+        StartCoroutine(StartUp());
     }
 
     private void Update()
     {
         HandleRaycastInput();
+        //Change the number in this if statement if more floors are added, also change it in FloorSelectSystem
+        if (cards.Count == 0 && FloorCounterSystem.FloorCount > 5)
+        {
+            victoryScreen.SetActive(true);
+        }
+    }
+
+    IEnumerator StartUp()
+    {
+        //Loading the resources in FloorSelectSystem's Start() MUST happen first, thus the wait
+        yield return new WaitForSeconds(0.01f);
+        UpdateCardPositions();
+        if (cards.Count > 0)
+        {
+            FlipAllCards();
+            cards[0].Flip();
+        }
     }
 
     void HandleRaycastInput()
@@ -79,7 +93,7 @@ public class RoundView : MonoBehaviour
                 GameObject hitCardGo = validHits[i].collider.gameObject;
                 var cardflip = cards.Find(c => c.gameObject == hitCardGo);
                 if (cardflip.isFlipped) return;
-                Debug.Log($"Kattintott kártya: {hitCardGo.name}");
+                //Debug.Log($"Kattintott kártya: {hitCardGo.name}");
                 RemoveCardSystem.RemoveFrontCard(hitCardGo);
             }
         }
