@@ -8,6 +8,9 @@ public class EnemySystem : MonoBehaviour
         ActionSystem.AttachPerformer<EnemyTurnGA>(EnemyTurnPerformer);
         ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
         ActionSystem.AttachPerformer<AttackEnemyGA>(AttackEnemyPerformer);
+
+        // register checker that runs after DealDamageGA when attached as a PostReaction
+        ActionSystem.AttachPerformer<CheckDestroyGA>(CheckDestroyPerformer);
     }
 
     private void OnDisable()
@@ -15,6 +18,8 @@ public class EnemySystem : MonoBehaviour
         ActionSystem.DetachPerformer<EnemyTurnGA>();
         ActionSystem.DetachPerformer<AttackHeroGA>();
         ActionSystem.DetachPerformer<AttackEnemyGA>();
+
+        ActionSystem.DetachPerformer<CheckDestroyGA>();
     }
 
     public void getClickedCard(GameObject clickedCard)
@@ -64,9 +69,9 @@ public class EnemySystem : MonoBehaviour
         EnemyCardView target = attackenemyGA.Target;
 
 
-        // read damage from attacker model
+        // read damage from attacker model (hero's current damage)
         int damageAmount = 0;
-        if (target.EnemyCard != null)
+        if (HeroStatSystem.Instance != null)
             damageAmount = HeroStatSystem.Instance.CurrentDamage;
 
         // optional delay/telegraph
@@ -74,15 +79,29 @@ public class EnemySystem : MonoBehaviour
 
         // create DealDamage action that targets the enemy (EnemyView implements IDamageable)
         DealDamageGA dealDamageGA = new(damageAmount, target);
+
+        // attach a CheckDestroyGA as a PostReaction so it runs AFTER DealDamageGA's performer finished
+        dealDamageGA.PostReaction.Add(new CheckDestroyGA(target));
+
         ActionSystem.Instance.AddReaction(dealDamageGA);
 
-        yield return new WaitForSeconds(0.15f);
+        // no immediate manual DestroyCardGA here — CheckDestroyGA will enqueue DestroyCardGA if HP == 0
+    }
 
-        if (target.EnemyCard.Health == 0)
-        {
-            DestroyCardGA destroyCardGA = new(target);
-            ActionSystem.Instance.AddReaction(destroyCardGA);
-        }
+    // Performer that runs when CheckDestroyGA is executed (registered on OnEnable)
+    private IEnumerator CheckDestroyPerformer(CheckDestroyGA checkDestroyGA)
+    {
         
+        // small delay to allow any visual hit reaction to play; optional
+        yield return null;
+
+        var cv = checkDestroyGA.Target as EnemyCardView;
+        if (cv.EnemyCard.Health <= 0)
+        {
+            // enqueue DestroyCardGA so removal is done through ActionSystem and RemoveCardSystem
+            ActionSystem.Instance.AddReaction(new DestroyCardGA(cv));
+        }
+
+        // If other card types need different conditions, handle them here (Heal/Statup etc.)
     }
 }
