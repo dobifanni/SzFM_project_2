@@ -93,7 +93,15 @@ public class RoundView : MonoBehaviour
                 GameObject hitCardGo = validHits[i].collider.gameObject;
                 var cardflip = cards.Find(c => c.gameObject == hitCardGo);
                 if (cardflip.isFlipped) return;
-                //Debug.Log($"Kattintott kártya: {hitCardGo.name}");
+
+                // Only run enemy turn for EnemyCardView instances
+                var enemyView = hitCardGo.GetComponent<EnemyCardView>();
+                if (enemyView != null)
+                {
+                    EnemyTurnGA enemyTurnGA = new(enemyView);
+                    ActionSystem.Instance.Perform(enemyTurnGA);
+                }
+
                 RemoveCardSystem.RemoveFrontCard(hitCardGo);
             }
         }

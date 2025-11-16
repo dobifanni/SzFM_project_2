@@ -1,25 +1,24 @@
 using UnityEngine;
 
-public class HeroStatSystem : Singleton<HeroStatSystem>
+public class HeroStatSystem : Singleton<HeroStatSystem>, IDamageable
 {
-    [SerializeField]private GameObject HeroStats;
-   
+    [SerializeField] private GameObject HeroStats;
 
     public int MaxHealth { get; private set; }
     public int CurrentHealth { get; private set; }
-    public int CurrentDamage{ get; private set; }
+    public int CurrentDamage { get; private set; }
     public int CurrentSpeed { get; private set; }
-
 
     public void Setup(HeroData heroData)
     {
         MaxHealth = CurrentHealth = heroData.Health;
         CurrentDamage = heroData.Damage;
         CurrentSpeed = heroData.Speed;
-        CallHPuiUpdate(heroData.Health);
-        CallDamageuiUpdate(heroData.Damage);
-        CallSpeeduiUpdate(heroData.Speed);
+        CallHPuiUpdate(CurrentHealth);
+        CallDamageuiUpdate(CurrentDamage);
+        CallSpeeduiUpdate(CurrentSpeed);
     }
+
     public void CallHPuiUpdate(int amount)
     {
         HeroStats.GetComponentInChildren<HealthUI>().UpdateHPText(amount);
@@ -35,9 +34,12 @@ public class HeroStatSystem : Singleton<HeroStatSystem>
         HeroStats.GetComponentInChildren<SpeedUI>().UpdateSpeedText(amount);
     }
 
-    // Update is called once per frame
-    void Update()
+    // IDamageable implementation: reduce hero health and update UI
+    public void ApplyDamage(int amount)
     {
-        
+        CurrentHealth = Mathf.Max(0, CurrentHealth - Mathf.Max(0, amount));
+        CallHPuiUpdate(CurrentHealth);
+
+        // optional: death check, animations, etc.
     }
 }

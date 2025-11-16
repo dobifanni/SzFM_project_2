@@ -12,4 +12,10 @@ public class EnemyCard : Card
         Damage = enemyCardData.Damage;
         Speed = enemyCardData.Speed;
     }
+
+    // apply damage on the model
+    public void ApplyDamage(int amount)
+    {
+        Health = Mathf.Max(0, Health - Mathf.Max(0, amount));
+    }
 }
