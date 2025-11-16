@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class AttackEnemyGA : MonoBehaviour
+public class AttackEnemyGA : GameAction
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public EnemyCardView Target { get; }
+    
 
-    // Update is called once per frame
-    void Update()
+    public AttackEnemyGA(EnemyCardView target)
     {
-        
+        Target = target;
     }
 }

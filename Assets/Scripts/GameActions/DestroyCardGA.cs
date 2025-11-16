@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class DestroyCardGA : GameAction
 {
-    public CardView CardView { get; private set; }
+    public CardView Target { get; private set; }
 
-    public DestroyCardGA(CardView cardView)
+    public DestroyCardGA(CardView target)
     {
-        CardView = cardView;
+        Target = target;
     }
 }
