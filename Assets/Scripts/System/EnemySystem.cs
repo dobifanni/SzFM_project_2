@@ -72,8 +72,17 @@ public class EnemySystem : MonoBehaviour
         // optional delay/telegraph
         yield return new WaitForSeconds(2f);
 
-        // create DealDamage action that targets the hero (HeroStatSystem implements IDamageable)
+        // create DealDamage action that targets the enemy (EnemyView implements IDamageable)
         DealDamageGA dealDamageGA = new(damageAmount, target);
         ActionSystem.Instance.AddReaction(dealDamageGA);
+
+        yield return new WaitForSeconds(0.15f);
+
+        if (target.EnemyCard.Health == 0)
+        {
+            DestroyCardGA destroyCardGA = new(target);
+            ActionSystem.Instance.AddReaction(destroyCardGA);
+        }
+        
     }
 }

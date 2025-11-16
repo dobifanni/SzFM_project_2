@@ -6,31 +6,29 @@ public class RemoveCardSystem : Singleton<RemoveCardSystem>
 
     [SerializeField] private RoundView RoundView;
 
-    public void RemoveFrontCard(GameObject clickedCard)
+    private void OnEnable()
     {
-        if (isMoving) return;
-
-        CardView cv = RoundView.cards.Find(c => c.gameObject == clickedCard);
-        if (cv == null) return;
-
-        
-
-        StartCoroutine(RemoveAndShift(cv));
+        ActionSystem.AttachPerformer<DestroyCardGA>(RemoveAndShiftPermorfer);
     }
 
-    System.Collections.IEnumerator RemoveAndShift(CardView clickedCard)
+    private void OnDisable()
+    {
+        ActionSystem.DetachPerformer<DestroyCardGA>();
+    }
+
+
+    System.Collections.IEnumerator RemoveAndShiftPermorfer(DestroyCardGA destroyCardGA)
     {
         isMoving = true;
 
-        if (clickedCard != null)
-        {
+        
             // remove and destroy the view object
 
             
 
-            RoundView.cards.Remove(clickedCard);
-            Destroy(clickedCard.gameObject);
-        }
+            RoundView.cards.Remove(destroyCardGA.Target);
+            Destroy(destroyCardGA.Target.gameObject);
+        
 
         // shift offset by the fraction based on the number of cards before removal
         RoundView.circleTOffset += 1f / Mathf.Max(1, (RoundView.cards.Count + 1));

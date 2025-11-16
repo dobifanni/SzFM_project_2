@@ -102,7 +102,7 @@ public class RoundView : MonoBehaviour
                     ActionSystem.Instance.Perform(enemyTurnGA);
                 }
 
-                RemoveCardSystem.RemoveFrontCard(hitCardGo);
+                
             }
         }
     }
