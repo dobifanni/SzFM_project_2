@@ -169,5 +169,14 @@ flowchart LR
 
 ## Üzleti folyamatok modellje
 
+### Megvalósítás folyamatának modellje
+
+![Megvalósításmodell](./images/uzletimodellek/megvalositasmodel.png)
+
+### Szolgáltatlás folyamatának modellje
+
+![Szolgáltatásmodell](./images/uzletimodllek/szolgaltatasmodel.png)
+
+
 ## [Tesztterv](./tesztterv.md)
 
