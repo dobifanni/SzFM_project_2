@@ -17,7 +17,19 @@ public class StatupSystem : Singleton<StatupSystem>
 
     private IEnumerator StatupPerformer(StatupGA statupGA)
     {
-        yield return new WaitForSeconds(2f);
+        if (statupGA.StatupCardView.StatupCard.statType == Stats.DAMAGE)
+        {
+           HeroStatSystem.Instance.CallDamageuiUpdate(HeroStatSystem.Instance.CurrentDamage += statupGA.StatupCardView.StatupCard.statupAmount);
+        }else if(statupGA.StatupCardView.StatupCard.statType == Stats.SPEED)
+        {
+            HeroStatSystem.Instance.CallSpeeduiUpdate(HeroStatSystem.Instance.CurrentSpeed += statupGA.StatupCardView.StatupCard.statupAmount);
+        }
+        else if(statupGA.StatupCardView.StatupCard.statType == Stats.MAXHEALTH)
+        {
+            HeroStatSystem.Instance.CallHPuiUpdate(HeroStatSystem.Instance.MaxHealth += statupGA.StatupCardView.StatupCard.statupAmount);
+        }
+
+            yield return new WaitForSeconds(2f);
 
         DestroyCardGA destroyCardGA = new(statupGA.StatupCardView);
         ActionSystem.Instance.AddReaction(destroyCardGA);
