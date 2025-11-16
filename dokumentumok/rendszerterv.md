@@ -175,7 +175,7 @@ flowchart LR
 
 ### Szolgáltatlás folyamatának modellje
 
-![Szolgáltatásmodell](./images/uzletimodllek/szolgaltatasmodel.png)
+![Szolgáltatásmodell](./images/uzletimodellek/szolgaltatasmodel.png)
 
 
 ## [Tesztterv](./tesztterv.md)
