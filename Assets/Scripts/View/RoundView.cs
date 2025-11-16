@@ -102,7 +102,22 @@ public class RoundView : MonoBehaviour
                     ActionSystem.Instance.Perform(enemyTurnGA);
                 }
 
-                
+                // Only run heal
+                var healView = hitCardGo.GetComponent<HealCardView>();
+                if (healView != null)
+                {
+                    HealGA healGA = new(healView);
+                    ActionSystem.Instance.Perform(healGA);
+                }
+
+                // Only run statup
+                var statupView = hitCardGo.GetComponent<StatupCardView>();
+                if (statupView != null)
+                {
+                    StatupGA statupGA = new(statupView);
+                    ActionSystem.Instance.Perform(statupGA);
+                }
+
             }
         }
     }

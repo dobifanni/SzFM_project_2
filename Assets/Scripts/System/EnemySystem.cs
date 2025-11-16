@@ -8,8 +8,6 @@ public class EnemySystem : MonoBehaviour
         ActionSystem.AttachPerformer<EnemyTurnGA>(EnemyTurnPerformer);
         ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
         ActionSystem.AttachPerformer<AttackEnemyGA>(AttackEnemyPerformer);
-
-        // register checker that runs after DealDamageGA when attached as a PostReaction
         ActionSystem.AttachPerformer<CheckDestroyGA>(CheckDestroyPerformer);
     }
 
@@ -18,7 +16,6 @@ public class EnemySystem : MonoBehaviour
         ActionSystem.DetachPerformer<EnemyTurnGA>();
         ActionSystem.DetachPerformer<AttackHeroGA>();
         ActionSystem.DetachPerformer<AttackEnemyGA>();
-
         ActionSystem.DetachPerformer<CheckDestroyGA>();
     }
 
