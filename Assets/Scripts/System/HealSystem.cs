@@ -17,7 +17,17 @@ public class HealSystem : Singleton<HealSystem>
 
     private IEnumerator HealPerformer(HealGA healGA)
     {
-        yield return new WaitForSeconds(2f);
+        if (HeroStatSystem.Instance.CurrentHealth + healGA.HealCardView.HealCard.Healing > HeroStatSystem.Instance.MaxHealth)
+        {
+            
+            HeroStatSystem.Instance.CallHPuiUpdate(HeroStatSystem.Instance.CurrentHealth = HeroStatSystem.Instance.MaxHealth);
+        }
+        else
+        {
+            HeroStatSystem.Instance.CallHPuiUpdate(HeroStatSystem.Instance.CurrentHealth += healGA.HealCardView.HealCard.Healing);
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         DestroyCardGA destroyCardGA = new(healGA.HealCardView);
         ActionSystem.Instance.AddReaction(destroyCardGA);

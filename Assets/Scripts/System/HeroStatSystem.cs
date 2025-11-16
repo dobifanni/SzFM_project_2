@@ -4,10 +4,10 @@ public class HeroStatSystem : Singleton<HeroStatSystem>, IDamageable
 {
     [SerializeField] private GameObject HeroStats;
 
-    public int MaxHealth { get; private set; }
-    public int CurrentHealth { get; private set; }
-    public int CurrentDamage { get; private set; }
-    public int CurrentSpeed { get; private set; }
+    public int MaxHealth { get;  set; }
+    public int CurrentHealth { get;  set; }
+    public int CurrentDamage { get;  set; }
+    public int CurrentSpeed { get;  set; }
 
     public void Setup(HeroData heroData)
     {
