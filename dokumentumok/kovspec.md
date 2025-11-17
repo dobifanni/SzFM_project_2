@@ -55,10 +55,6 @@ A játék jelenlegi állapotában már rendelkezésre áll az alapvető játékm
 | Játékfelület | K45 | Animációk | 2.0 | Animációk a játék folyamatában | pl. kártyakitétel a szintre, kattintásnál effekt |
 | Játékfelület | K46 | Hangeffektek | 2.0 | Hangeffektek a játék folyamatában | pl. támadásnál, nyereségnél, veszteségnél |
 
-## Szabad riport
-
-## Irányított riport
-
 ## Vágyálomrendszer
 
 A cél egy egyedi, könnyen tanulható, mégis mély stratégiai élményt nyújtó kártyaalapú roguelite játék fejlesztése Unity-ben. A játékos egy választott hőssel indul, majd különböző szinteken át haladva kártyákra kattintva fedezi fel a pályát: harcba bocsátkozik, gyógyul, és fejleszti a statjait. A kártyák kör alakban helyezkednek el, és minden eltűnő kártya felfedi két szomszédját, így folyamatos felfedezési és döntési helyzetet teremt. A cél minden szinten az összes kártya legyőzése, ezután megjelenik az ajtó, amely a következő pályára vezet.
