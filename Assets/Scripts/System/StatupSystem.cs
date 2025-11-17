@@ -29,7 +29,7 @@ public class StatupSystem : Singleton<StatupSystem>
             HeroStatSystem.Instance.CallHPuiUpdate(HeroStatSystem.Instance.MaxHealth += statupGA.StatupCardView.StatupCard.statupAmount);
         }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
 
         DestroyCardGA destroyCardGA = new(statupGA.StatupCardView);
         ActionSystem.Instance.AddReaction(destroyCardGA);

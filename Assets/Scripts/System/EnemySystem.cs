@@ -54,7 +54,7 @@ public class EnemySystem : MonoBehaviour
             damageAmount = attacker.EnemyCard.Damage;
 
         // optional delay/telegraph
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
         // create DealDamage action that targets the hero (HeroStatSystem implements IDamageable)
         DealDamageGA dealDamageGA = new(damageAmount, HeroStatSystem.Instance);
@@ -72,7 +72,7 @@ public class EnemySystem : MonoBehaviour
             damageAmount = HeroStatSystem.Instance.CurrentDamage;
 
         // optional delay/telegraph
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
         // create DealDamage action that targets the enemy (EnemyView implements IDamageable)
         DealDamageGA dealDamageGA = new(damageAmount, target);

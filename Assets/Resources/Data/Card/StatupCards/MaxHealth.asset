@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221066de2430aa64fbeb7436c99d02d4, type: 3}
   m_Name: MaxHealth
   m_EditorClassIdentifier: 
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 21300000, guid: b0341d339aae7474493ba7d2afb89b6d, type: 3}
   <StatType>k__BackingField: 0
   <Amount>k__BackingField: 1
