@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class HealSystem : Singleton<HealSystem>
 {
@@ -27,7 +28,7 @@ public class HealSystem : Singleton<HealSystem>
             HeroStatSystem.Instance.CallHPuiUpdate(HeroStatSystem.Instance.CurrentHealth += healGA.HealCardView.HealCard.Healing);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.55f);
 
         DestroyCardGA destroyCardGA = new(healGA.HealCardView);
         ActionSystem.Instance.AddReaction(destroyCardGA);

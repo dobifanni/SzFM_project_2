@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemySystem : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class EnemySystem : MonoBehaviour
             damageAmount = attacker.EnemyCard.Damage;
 
         // optional delay/telegraph
+        attacker.transform.DOShakeScale(0.4f, new Vector3(0.5f, 0.5f, 0f), 5, 0f);
         yield return new WaitForSeconds(0.5f);
 
         // create DealDamage action that targets the hero (HeroStatSystem implements IDamageable)
@@ -72,6 +74,7 @@ public class EnemySystem : MonoBehaviour
             damageAmount = HeroStatSystem.Instance.CurrentDamage;
 
         // optional delay/telegraph
+        target.transform.DOShakePosition(0.4f);
         yield return new WaitForSeconds(0.5f);
 
         // create DealDamage action that targets the enemy (EnemyView implements IDamageable)
@@ -82,7 +85,7 @@ public class EnemySystem : MonoBehaviour
 
         ActionSystem.Instance.AddReaction(dealDamageGA);
 
-        // no immediate manual DestroyCardGA here — CheckDestroyGA will enqueue DestroyCardGA if HP == 0
+        // no immediate manual DestroyCardGA here ï¿½ CheckDestroyGA will enqueue DestroyCardGA if HP == 0
     }
 
     // Performer that runs when CheckDestroyGA is executed (registered on OnEnable)

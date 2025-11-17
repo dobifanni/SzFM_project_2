@@ -7,7 +7,7 @@ public class CheckSpeedSystem : Singleton<CheckSpeedSystem>
         for(int i = 0; i < RoundView.cards.Count; i++)
         {
 
-            int speed = 2; //replace with player's speed
+            int speed = HeroStatSystem.Instance.CurrentSpeed; //replace with player's speed
 
             if (RoundView.cards[i] is EnemyCardView enemyCardView)
             {

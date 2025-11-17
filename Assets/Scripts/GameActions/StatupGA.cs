@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class StatupGA : GameAction
 {
@@ -7,5 +8,6 @@ public class StatupGA : GameAction
     public StatupGA(StatupCardView statupCardView)
     {
         StatupCardView = statupCardView;
+        StatupCardView.transform.DOScaleY(0f, 0.35f);
     }
 }
