@@ -5,56 +5,76 @@ using UnityEngine.InputSystem;
 
 public class FloorSelectSystem : Singleton<FloorSelectSystem>
 {
-
     [SerializeField] private FloorData regularFloor;
-    [SerializeField] private FloorData encounterFloor;
-    [SerializeField] private FloorData specialFloor;
+    [SerializeField] private FloorData specialHealFloor;
+    [SerializeField] private FloorData specialStatupFloor;
     [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
+
+    private static bool healSpawnedOnce;
+    private static bool statupSpawnedOnce;
 
     void Start()
     {
-        regularFloor = Resources.Load<FloorData>("Data/Floor/Floor" + FloorCounterSystem.FloorCount.ToString());
-        //Loads random Encounter floors' data, it's randomized, change numbers based on number of encounter floors created
-        encounterFloor = Resources.Load<FloorData>("Data/Floor/EncounterFloor" + UnityEngine.Random.Range(1, 2).ToString());
-        //Loads non-random Special floors' data, it's randomized, change numbers based on number of encounter floors created
-        specialFloor = Resources.Load<FloorData>("Data/Floor/SpecialFloor" + UnityEngine.Random.Range(1, 2).ToString());
-        FloorDataUpdate();
-        
-    }
-    
-public void FloorDataUpdate()
+        if (FloorCounterSystem.FloorCount <= 1)
         {
-            if (FloorCounterSystem.FloorCount < 2)
+            healSpawnedOnce = false;
+            statupSpawnedOnce = false;
+            RoundView.lastFloorWasSpecial = false;
+        }
+
+        regularFloor      = Resources.Load<FloorData>("Data/Floor/Floor" + FloorCounterSystem.FloorCount.ToString());
+        specialHealFloor  = Resources.Load<FloorData>("Data/Floor/SpecialFloorHeal");
+        specialStatupFloor= Resources.Load<FloorData>("Data/Floor/SpecialFloorStatup");
+
+        FloorDataUpdate();
+    }
+
+    public void FloorDataUpdate()
+    {
+        // first regular floor should not be a special
+        if (FloorCounterSystem.FloorCount < 2)
+        {
+            RoundView.lastFloorWasSpecial = true;
+        }
+
+        if (FloorCounterSystem.FloorCount < 6)
+        {
+            bool lastWasSpecial = RoundView.lastFloorWasSpecial;
+
+            if (!lastWasSpecial)
             {
-                //Ensures game doesn't start with an encounter
-                RoundView.lastFloorWasEncounter = true;
-            }
-            //Change this number if more floors are added, also change it in RoundView
-            if (FloorCounterSystem.FloorCount < 6)
-            {
-                if (RoundView.rnd > 0.8f && RoundView.lastFloorWasEncounter == false && FloorCounterSystem.FloorCount % 3 != 0)
+                float rollHeal = Random.value; // 30%
+                float rollStat = Random.value; // 30%
+
+                bool canHeal = !healSpawnedOnce   && rollHeal < 0.4f;
+                bool canStat = !statupSpawnedOnce && rollStat < 0.4f;
+
+                if (canHeal || canStat)
                 {
-                    //This is for the random big enemy floors
-                    cardViewSetupSystem.CardViewSetup(encounterFloor, RoundView.cards);
-                    //Uncomment next line if we want encounters to replace floors, not be additional ones
-                    //FloorCounterSystem.FloorNumberUp();
-                    RoundView.lastFloorWasEncounter = true;
-                }
-                //Special floors appear every 3 floors, this is arbitrary, feel free to change
-                else if (FloorCounterSystem.FloorCount % 3 == 0 && RoundView.lastFloorWasSpecial == false)
-                {
-                    //This is for the heal/loot floors at fixed floors
-                    cardViewSetupSystem.CardViewSetup(specialFloor, RoundView.cards);
-                    RoundView.lastFloorWasSpecial = true;
-                }
-                else
-                {
-                    //This is just regular floor progression
-                    cardViewSetupSystem.CardViewSetup(regularFloor, RoundView.cards);
-                    FloorCounterSystem.FloorNumberUp();
-                    RoundView.lastFloorWasSpecial = false;
-                    RoundView.lastFloorWasEncounter = false;
+                    bool chooseHeal = canHeal && canStat ? Random.value < 0.5f : canHeal;
+
+                    if (chooseHeal)
+                    {
+                        cardViewSetupSystem.CardViewSetup(specialHealFloor, RoundView.cards);
+                        healSpawnedOnce = true;
+                        RoundView.lastFloorWasSpecial = true;
+                        return;
+                    }
+                    else
+                    {
+                        cardViewSetupSystem.CardViewSetup(specialStatupFloor, RoundView.cards);
+                        statupSpawnedOnce = true;
+                        RoundView.lastFloorWasSpecial = true;
+                        return;
+                    }
                 }
             }
+
+            // Regular floor (increments floor count)
+            regularFloor = Resources.Load<FloorData>("Data/Floor/Floor" + FloorCounterSystem.FloorCount.ToString());
+            cardViewSetupSystem.CardViewSetup(regularFloor, RoundView.cards);
+            FloorCounterSystem.FloorNumberUp();
+            RoundView.lastFloorWasSpecial = false;
         }
     }
+}

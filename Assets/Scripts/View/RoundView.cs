@@ -12,6 +12,7 @@ public class RoundView : MonoBehaviour
     //[SerializeField] private FloorData floorData; // assign in inspector or call PopulateFromFloor manually
     [SerializeField] public DoorCardData doorCardData;
     [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private GameObject gameOverScreen;
 
     [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
     [SerializeField] private RemoveCardSystem RemoveCardSystem;
@@ -23,7 +24,6 @@ public class RoundView : MonoBehaviour
     public float fallbackRadius = 2f;
     public static float rnd;
     public static bool lastFloorWasSpecial;
-    public static bool lastFloorWasEncounter;
 
 
     // store CardView instances instead of raw GameObjects
@@ -49,6 +49,12 @@ public class RoundView : MonoBehaviour
         {
             victoryScreen.SetActive(true);
         }
+
+        if (HeroStatSystem.Instance.CurrentHealth <= 0)
+        {
+            gameOverScreen.SetActive(true);
+        }
+
     }
 
     IEnumerator StartUp()
