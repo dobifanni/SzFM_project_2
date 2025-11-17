@@ -30,13 +30,19 @@ Ha elpusztult minden kártya egy körben, akkor megjelenik a végén egy ajtó, 
 ![End of floor](../dokumentumok/images/felulettervek/end_of_floor.jpg)
 
 ### Special floor
-A játék során random generálódnak speciális szintek, amelyek különböznek az alapból meghatározottaktól.
+A játék során random generálódnak speciális szintek, amelyek különböznek az alapból meghatározottaktól. Az egyiken heal-ek, a másikon statup kártyák vannak.
+
+![Special floor](../dokumentumok/images/felulettervek/special_floor.jpg)
 
 ### Win game
 Ha a játékos legyőzte az utolsó szinten az utolsó kártyát is, akkor ez a felület fog megjelenni.
 
+![Win game](../dokumentumok/images/felulettervek/win_game.jpg)
+
 ### Lose game
 A játék során ha a játékos életereje elfogy, elveszíti a játékot, és ez a felület jelenik meg.
+
+![Lose game](../dokumentumok/images/felulettervek/game_over.jpg)
 
 ### Enemy kártya
 A játékos ez a kártyatípus ellen harcolni, ezeket kell legyőznie.
@@ -52,3 +58,8 @@ A játékos ezzel a kártyatípussal gyógyul.
 A játékos ezzel a kártyatípussal valamelyik stat-ját fejleszti.
 
 ![Stat-up](../dokumentumok/images/felulettervek/statup.jpg)
+
+### Door kártya
+A játékos erre a kártyatípusra kattintva lép a következő szintre.
+
+![Door](../dokumentumok/images/felulettervek/door.jpg)
