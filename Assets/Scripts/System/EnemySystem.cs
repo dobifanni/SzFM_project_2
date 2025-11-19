@@ -10,6 +10,8 @@ public class EnemySystem : MonoBehaviour
         ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
         ActionSystem.AttachPerformer<AttackEnemyGA>(AttackEnemyPerformer);
         ActionSystem.AttachPerformer<CheckDestroyGA>(CheckDestroyPerformer);
+        ActionSystem.AttachPerformer<SpeedCheckGA>(SpeedCheckPerformer);
+        ActionSystem.AttachPerformer<AttackHeroIfAliveGA>(AttackHeroIfAlivePerformer);
     }
 
     private void OnDisable()
@@ -18,6 +20,8 @@ public class EnemySystem : MonoBehaviour
         ActionSystem.DetachPerformer<AttackHeroGA>();
         ActionSystem.DetachPerformer<AttackEnemyGA>();
         ActionSystem.DetachPerformer<CheckDestroyGA>();
+        ActionSystem.DetachPerformer<SpeedCheckGA>();
+        ActionSystem.DetachPerformer<AttackHeroIfAliveGA>();
     }
 
     public void getClickedCard(GameObject clickedCard)
@@ -27,32 +31,44 @@ public class EnemySystem : MonoBehaviour
 
     private IEnumerator EnemyTurnPerformer(EnemyTurnGA enemyTurnGA)
     {
-        Debug.Log("Enemy Turn");
+        var enemy = enemyTurnGA?.Target;
+        if (enemy == null || HeroStatSystem.Instance == null)
+            yield break;
 
-        var attacker = enemyTurnGA?.Target;
-            
-        AttackHeroGA attackHeroGA = new(attacker);
-        ActionSystem.Instance.AddReaction(attackHeroGA);
+        // Enqueue speed check – this will decide attack order
+        ActionSystem.Instance.AddReaction(new SpeedCheckGA(enemy, HeroStatSystem.Instance));
+        yield return null;
+    }
 
-        AttackEnemyGA attackEnemyGA = new(attacker);
-        ActionSystem.Instance.AddReaction(attackEnemyGA);
+    private IEnumerator SpeedCheckPerformer(SpeedCheckGA speedCheckGA)
+    {
+        var enemy = speedCheckGA.Enemy;
+        var hero = speedCheckGA.Hero;
+        if (enemy == null || hero == null || enemy.EnemyCard == null)
+            yield break;
 
+        int heroSpeed = hero.CurrentSpeed;
+        int enemySpeed = enemy.EnemyCard.Speed;
+
+        if (heroSpeed >= enemySpeed)
+        {
+            // Hero attacks first; enemy only retaliates if still alive
+            ActionSystem.Instance.AddReaction(new AttackEnemyGA(enemy, true));
+        }
+        else
+        {
+            // Enemy attacks first; hero always gets a counter-attack (if still alive logic could be added similarly)
+            ActionSystem.Instance.AddReaction(new AttackHeroGA(enemy));
+            ActionSystem.Instance.AddReaction(new AttackEnemyGA(enemy, false));
+        }
 
         yield return null;
-
-        Debug.Log("Enemy Turn Over");
-        
     }
 
     private IEnumerator AttackHeroPerformer(AttackHeroGA attackHeroGA)
     {
         EnemyCardView attacker = attackHeroGA.Attacker;
-        
-
-        // read damage from attacker model
-        int damageAmount = 0;
-        if (attacker.EnemyCard != null)
-            damageAmount = attacker.EnemyCard.Damage;
+        int damageAmount = attacker?.EnemyCard != null ? attacker.EnemyCard.Damage : 0;
 
         // optional delay/telegraph
         attacker.transform.DOShakeScale(0.4f, new Vector3(0.5f, 0.5f, 0f), 5, 0f);
@@ -66,12 +82,7 @@ public class EnemySystem : MonoBehaviour
     private IEnumerator AttackEnemyPerformer(AttackEnemyGA attackenemyGA)
     {
         EnemyCardView target = attackenemyGA.Target;
-
-
-        // read damage from attacker model (hero's current damage)
-        int damageAmount = 0;
-        if (HeroStatSystem.Instance != null)
-            damageAmount = HeroStatSystem.Instance.CurrentDamage;
+        int damageAmount = HeroStatSystem.Instance != null ? HeroStatSystem.Instance.CurrentDamage : 0;
 
         // optional delay/telegraph
         target.transform.DOShakePosition(0.4f);
@@ -79,29 +90,39 @@ public class EnemySystem : MonoBehaviour
 
         // create DealDamage action that targets the enemy (EnemyView implements IDamageable)
         DealDamageGA dealDamageGA = new(damageAmount, target);
-
-        // attach a CheckDestroyGA as a PostReaction so it runs AFTER DealDamageGA's performer finished
+        // Always check for destruction
         dealDamageGA.PostReaction.Add(new CheckDestroyGA(target));
 
-        ActionSystem.Instance.AddReaction(dealDamageGA);
+        // If hero acted first, schedule conditional enemy retaliation after damage & destroy check
+        if (attackenemyGA.HeroActsFirst)
+        {
+            dealDamageGA.PostReaction.Add(new AttackHeroIfAliveGA(target));
+        }
 
-        // no immediate manual DestroyCardGA here � CheckDestroyGA will enqueue DestroyCardGA if HP == 0
+        ActionSystem.Instance.AddReaction(dealDamageGA);
+    }
+
+    private IEnumerator AttackHeroIfAlivePerformer(AttackHeroIfAliveGA ga)
+    {
+        var enemy = ga.Enemy;
+        if (enemy != null && enemy.EnemyCard != null && enemy.EnemyCard.Health > 0)
+        {
+            ActionSystem.Instance.AddReaction(new AttackHeroGA(enemy));
+        }
+        yield return null;
     }
 
     // Performer that runs when CheckDestroyGA is executed (registered on OnEnable)
     private IEnumerator CheckDestroyPerformer(CheckDestroyGA checkDestroyGA)
     {
-        
         // small delay to allow any visual hit reaction to play; optional
         yield return null;
 
         var cv = checkDestroyGA.Target as EnemyCardView;
-        if (cv.EnemyCard.Health <= 0)
+        if (cv?.EnemyCard != null && cv.EnemyCard.Health <= 0)
         {
             // enqueue DestroyCardGA so removal is done through ActionSystem and RemoveCardSystem
             ActionSystem.Instance.AddReaction(new DestroyCardGA(cv));
         }
-
-        // If other card types need different conditions, handle them here (Heal/Statup etc.)
     }
 }
