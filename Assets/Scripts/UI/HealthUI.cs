@@ -5,8 +5,8 @@ public class HealthUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text hp;
 
-    public void UpdateHPText(int currentHP)
+    public void UpdateHPText(int currentHP, int maxHP)
     {
-        hp.text = currentHP.ToString();
+        hp.text = $"{currentHP}/{maxHP}";
     }
 }

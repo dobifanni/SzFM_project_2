@@ -4,10 +4,10 @@ public class HeroStatSystem : Singleton<HeroStatSystem>, IDamageable
 {
     [SerializeField] private GameObject HeroStats;
 
-    public int MaxHealth { get;  set; }
-    public int CurrentHealth { get;  set; }
-    public int CurrentDamage { get;  set; }
-    public int CurrentSpeed { get;  set; }
+    public int MaxHealth { get; set; }
+    public int CurrentHealth { get; set; }
+    public int CurrentDamage { get; set; }
+    public int CurrentSpeed { get; set; }
 
     public void Setup(HeroData heroData)
     {
@@ -19,9 +19,9 @@ public class HeroStatSystem : Singleton<HeroStatSystem>, IDamageable
         CallSpeeduiUpdate(CurrentSpeed);
     }
 
-    public void CallHPuiUpdate(int amount)
+    public void CallHPuiUpdate(int currentHP)
     {
-        HeroStats.GetComponentInChildren<HealthUI>().UpdateHPText(amount);
+        HeroStats.GetComponentInChildren<HealthUI>().UpdateHPText(currentHP, MaxHealth);
     }
 
     public void CallDamageuiUpdate(int amount)

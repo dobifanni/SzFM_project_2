@@ -2736,8 +2736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularFloor: {fileID: 11400000, guid: 15834aac9dde4574f882548fdf524592, type: 2}
-  specialHealFloor: {fileID: 0}
-  specialStatupFloor: {fileID: 0}
+  specialHealFloor: {fileID: 11400000, guid: cf95171e5dd56ea38888a3e08a5d5229, type: 2}
+  specialStatupFloor: {fileID: 11400000, guid: 6923f11499d6a0945a2e1352b518075b, type: 2}
   cardViewSetupSystem: {fileID: 953614367}
 --- !u!1 &1318916179
 GameObject:
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -60.240036, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5128,10 +5128,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1306021740335266860, guid: b233464196e12e2a593f3888123de170, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b233464196e12e2a593f3888123de170, type: 3}
 --- !u!114 &1988787505072252632 stripped
 MonoBehaviour:
