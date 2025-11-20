@@ -48,8 +48,11 @@ A backend a játék logikai és rendszeroldali rétege, amely biztosítja az egy
 A frontend a játék vizuális és interaktív felülete, amelyet a Unity motor jelenít meg. Ide tartozik a főmenü, a játékmező, valamint a kártyák és UI-elemek kezelése. A Unity UI-rendszerét (UGUI) használjuk a felhasználói felület elemeinek megjelenítésére és kezelésére, az animációkhoz pedig a Unity Animation vagy DOTween megoldásokat alkalmazzuk. A frontend és a backend szorosan együttműködik: a backend szolgáltatja a szükséges adatokat és logikát, míg a frontend ezeket látványosan, játékosbarát módon jeleníti meg.
 
 ## Funkcionális terv
+### Miért játszanál a játékkal?
 
-Rendszerszereplők:
+A roguelike card crawler játékunkban véletlenszerűen generált kihívásokat kell megoldani de nem kártyapakli építésével, hanem stratégiai döntésekkel mivel nincsen pakli, a kártyák az ellenségeiddé váltak és a világod pusztán csak egy gyűrű. Minden új játékmenet más, így folyamatosan új stratégiákat kell kitalálni, ami nagy lejátszhatóságot és izgalmat ad a játékosnak.
+
+### Rendszerszereplők:
 
 - játékos
 
