@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Floor5
   m_EditorClassIdentifier: 
   <FloorCards>k__BackingField:
+  - {fileID: 11400000, guid: 740fe60e799cd624aa17a9cfb06e2447, type: 2}
+  - {fileID: 11400000, guid: 740fe60e799cd624aa17a9cfb06e2447, type: 2}
   - {fileID: 11400000, guid: 633da73c59bf91d45b1b68ba1a46c711, type: 2}
   - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
+  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
+  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
+  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
+  - {fileID: 11400000, guid: ce24c24e98a8fc445b0c9c7d5d084e13, type: 2}
+  - {fileID: 11400000, guid: 550a6b87d3e87fb4baaa07bb02cd647f, type: 2}
+  - {fileID: 11400000, guid: 550a6b87d3e87fb4baaa07bb02cd647f, type: 2}
+  - {fileID: 11400000, guid: 63c4ea1fd1362b14189314c3c4d67604, type: 2}
+  - {fileID: 11400000, guid: 6d92337f7210a884189f11a59ff2011e, type: 2}
   - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
-  - {fileID: 11400000, guid: 633da73c59bf91d45b1b68ba1a46c711, type: 2}
-  - {fileID: 11400000, guid: 633da73c59bf91d45b1b68ba1a46c711, type: 2}
-  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
-  - {fileID: 11400000, guid: 633da73c59bf91d45b1b68ba1a46c711, type: 2}
-  - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
-  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
-  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
-  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
-  - {fileID: 11400000, guid: e745917c73b5b19469d6ad10ba0e0db5, type: 2}
-  - {fileID: 11400000, guid: 633da73c59bf91d45b1b68ba1a46c711, type: 2}

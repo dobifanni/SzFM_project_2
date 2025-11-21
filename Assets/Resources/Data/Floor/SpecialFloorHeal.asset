@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SpecialFloorHeal
   m_EditorClassIdentifier: 
   <FloorCards>k__BackingField:
+  - {fileID: 11400000, guid: 5f259ffbdea7b7e47b5f2005a2502dd6, type: 2}
+  - {fileID: 11400000, guid: 5f259ffbdea7b7e47b5f2005a2502dd6, type: 2}
   - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
-  - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
-  - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
-  - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
-  - {fileID: 11400000, guid: 396c71f16128c9db39a2567ef973081d, type: 2}
+  - {fileID: 11400000, guid: 37bd61322640abc45920dbb3872afb0f, type: 2}
+  - {fileID: 11400000, guid: 37bd61322640abc45920dbb3872afb0f, type: 2}
+  - {fileID: 11400000, guid: 550a6b87d3e87fb4baaa07bb02cd647f, type: 2}
