@@ -32,9 +32,8 @@ public class EnemySystem : MonoBehaviour
     private IEnumerator EnemyTurnPerformer(EnemyTurnGA enemyTurnGA)
     {
         var enemy = enemyTurnGA?.Target;
-        if (enemy == null || HeroStatSystem.Instance == null)
+        if (enemy == null)// || HeroStatSystem.Instance == null)
             yield break;
-
         // Enqueue speed check – this will decide attack order
         ActionSystem.Instance.AddReaction(new SpeedCheckGA(enemy, HeroStatSystem.Instance));
         yield return null;
@@ -44,7 +43,7 @@ public class EnemySystem : MonoBehaviour
     {
         var enemy = speedCheckGA.Enemy;
         var hero = speedCheckGA.Hero;
-        if (enemy == null || hero == null || enemy.EnemyCard == null)
+        if (enemy == null || enemy.EnemyCard == null)
             yield break;
 
         int heroSpeed = hero.CurrentSpeed;
@@ -82,7 +81,7 @@ public class EnemySystem : MonoBehaviour
     private IEnumerator AttackEnemyPerformer(AttackEnemyGA attackenemyGA)
     {
         EnemyCardView target = attackenemyGA.Target;
-        int damageAmount = HeroStatSystem.Instance != null ? HeroStatSystem.Instance.CurrentDamage : 0;
+        int damageAmount = HeroStatSystem.Instance.CurrentDamage;
 
         // optional delay/telegraph
         target.transform.DOShakePosition(0.4f);

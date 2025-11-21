@@ -22,7 +22,7 @@ public class AssassinButtonUI : MonoBehaviour
     
     public void Palyatoltes(string sceneNev)
     {
+        HeroStatSystem.Instance.Setup(assassin);
         SceneManager.LoadScene(sceneNev);
-        MatchHandlerSystem.heroData = assassin;
     }
 }

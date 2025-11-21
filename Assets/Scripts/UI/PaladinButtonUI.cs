@@ -22,7 +22,7 @@ public class PaladinButtonUI : MonoBehaviour
     
     public void Palyatoltes(string sceneNev)
     {
+        HeroStatSystem.Instance.Setup(paladin);
         SceneManager.LoadScene(sceneNev);
-        MatchHandlerSystem.heroData = paladin;
     }
 }

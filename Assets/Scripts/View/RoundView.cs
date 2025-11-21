@@ -13,6 +13,7 @@ public class RoundView : MonoBehaviour
     [SerializeField] public DoorCardData doorCardData;
     [SerializeField] private GameObject victoryScreen;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject statsUI;
 
     [SerializeField] private CardViewSetupSystem cardViewSetupSystem;
     [SerializeField] private RemoveCardSystem RemoveCardSystem;
@@ -35,6 +36,9 @@ public class RoundView : MonoBehaviour
 
     void Start()
     {
+        HeroStatSystem.Instance.SetupUI(statsUI);
+        HeroStatSystem.Instance.callUI();
+        Debug.Log(HeroStatSystem.Instance.initialized);
         rnd = UnityEngine.Random.value;
         if (!mainCamera) mainCamera = Camera.main;
         doorSpawned = false;
@@ -105,6 +109,7 @@ public class RoundView : MonoBehaviour
                 if (enemyView != null)
                 {
                     EnemyTurnGA enemyTurnGA = new(enemyView);
+                    Debug.Log("Action created");
                     ActionSystem.Instance.Perform(enemyTurnGA);
                 }
 

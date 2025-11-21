@@ -9,7 +9,10 @@ public class MatchHandlerSystem : Singleton<MatchHandlerSystem>
     public static HeroData heroData { get; set;}
     void Start()
     {
-        HeroStatSystem.Instance.Setup(heroData);
+        /*if (FloorCounterSystem.FloorCount == 1)
+        {
+            HeroStatSystem.Instance.Setup(heroData);
+        }*/
     }
 
     // Update is called once per frame

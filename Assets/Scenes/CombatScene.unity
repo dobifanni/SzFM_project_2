@@ -1986,7 +1986,6 @@ Transform:
   - {fileID: 643690421}
   - {fileID: 953614368}
   - {fileID: 2067592933}
-  - {fileID: 1668586788}
   - {fileID: 1989348457}
   - {fileID: 1340859347}
   - {fileID: 88906939}
@@ -2449,6 +2448,7 @@ MonoBehaviour:
   doorCardData: {fileID: 11400000, guid: 28db21b1262eb5d44b5a184d2b2e56d6, type: 2}
   victoryScreen: {fileID: 945301455}
   gameOverScreen: {fileID: 1062924992}
+  statsUI: {fileID: 766647820}
   cardViewSetupSystem: {fileID: 953614367}
   RemoveCardSystem: {fileID: 88906940}
   FloorSelectSystem: {fileID: 1287052173}
@@ -3761,51 +3761,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621271451}
   m_CullTransparentMesh: 1
---- !u!1 &1668586787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1668586788}
-  - component: {fileID: 1668586789}
-  m_Layer: 0
-  m_Name: HeroStatSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1668586788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668586787}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 838769835}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1668586789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668586787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61bac57f8f67744d80996923f343d6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HeroStats: {fileID: 766647820}
 --- !u!1 &1726632092
 GameObject:
   m_ObjectHideFlags: 0
