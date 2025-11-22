@@ -47,14 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985ea521c04830248b1dbbb0b40109eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageSR: {fileID: 3522067658423902749}
+  wrapper: {fileID: 4537987649898675783}
+  isFlipped: 0
   health: {fileID: 5967455114837579822}
   damage: {fileID: 3540065418526480001}
   speed: {fileID: 8513810386120908045}
-  imageSR: {fileID: 3522067658423902749}
-  wrapper: {fileID: 4537987649898675783}
+  healthBar: {fileID: 2699942667600214658}
   speedUp: {fileID: 133840084842088569}
   speedDown: {fileID: 5913859767878956491}
-  isFlipped: 0
 --- !u!210 &1886144246903887005
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -1620,8 +1621,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278913804
+  m_fontColor: {r: 0.047169805, g: 0.04338732, b: 0.04338732, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
