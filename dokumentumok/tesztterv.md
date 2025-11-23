@@ -23,20 +23,6 @@ A tesztelés fő moduljai:
 
 A tesztelés ezen komponensek működésére és együttműködésére irányul.
 
-## Tesztbázis
-A tesztbázis a projekt azon elemeinek összessége, amelyek a követelményeket tartalmazzák.
-
-Tesztbázis:
-- Unity project scriptek
-- A játék logikai követelményei (implicit, kódból következők)
-- A Unity Editorban beállított prefab objektumok struktúrája
-- Játékszabályok:
-    - hős életereje nem mehet 0 alá
-    - ellenség támadásának helyes kalkulációja
-    - heal kártyák gyógyítanak, nem sebeznek
-    - stat-up kártyák növelik a statokat
-    - floor váltás logika
-
 ## Tesztelési célok
 ### Funkcionális célok
 - A kártyák (Heal, Enemy, Door, StatUp) megfelelő működése
@@ -66,24 +52,6 @@ Tesztbázis:
 
 ### Rendszerteszt
 - A teljes játék logikai körének futtatása (Play Mode teszt)
-
-## Tesztelési eljárások
-- Használati eset alapú tesztek
-    - Kártya létrehozása → alkalmazása → eredmény ellenőrzése
-    - Harci forduló szimuláció
-    - Floor váltás ellenőrzése
-    - Hős halála → játék vége esemény
-- Ekvivalencia osztályok példák
-    - Pozitív sebzés, nulla sebzés, túl nagy sebzés
-    - Heal negatív értékkel (invalid input)
-    - StatUp kártya többféle statra
-
-## Kilépési feltételek
-A teszt lezárható, ha:
-- A kritikus komponensekre (RoundView, DamageSystem, GameAction osztályok) a tesztlefedettség ≥ 100%
-- A nem kritikus osztályok tesztlefedettsége ≥ 70%
-- Nincs “Blocking” vagy “Critical” hiba
-- A funkcionális tesztek ≥ 98% MEGFELELT minősítést kapnak
 
 ## Teszteset lista
 ### Funkcionális tesztesetek
@@ -148,7 +116,7 @@ A teszt lezárható, ha:
 - Kilépési feltétel: integrity checked
 
 ### Integrációs tesztek
-1 - GameManager helyesen szekvenciázza az eseményeket
+1 - Systemek helyesen szekvenciázzák az eseményeket
 - Teszt tárgya: RoundView, EnemySystem, FloorSelectSystem
 - Tesztadat: minden kártya eltűnése után floor váltás
 - Lépések:
@@ -200,6 +168,24 @@ A teszt lezárható, ha:
 - Lépések: hiányzó prefab
 - Elvárt eredmény: debug log → egyértelmű hiba
 - Kilépési feltétel: no silent failure
+
+## Tesztelési eljárások
+- Használati eset alapú tesztek
+    - Kártya létrehozása → alkalmazása → eredmény ellenőrzése
+    - Harci forduló szimuláció
+    - Floor váltás ellenőrzése
+    - Hős halála → játék vége esemény
+- Ekvivalencia osztályok példák
+    - Pozitív sebzés, nulla sebzés, túl nagy sebzés
+    - Heal negatív értékkel (invalid input)
+    - StatUp kártya többféle statra
+
+## Kilépési feltételek
+A teszt lezárható, ha:
+- A kritikus komponensekre (RoundView, DamageSystem, GameAction osztályok) a tesztlefedettség ≥ 100%
+- A nem kritikus osztályok tesztlefedettsége ≥ 70%
+- Nincs “Blocking” vagy “Critical” hiba
+- A funkcionális tesztek ≥ 98% MEGFELELT minősítést kapnak
 
 ## Kockázatok és függőségek
 - Kritikus scriptek logikai hibái dominószerűen minden tesztet érinthetnek
