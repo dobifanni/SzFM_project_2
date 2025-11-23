@@ -106,27 +106,26 @@ public class RoundView : MonoBehaviour
 
                 // Only run enemy turn for EnemyCardView instances
                 var enemyView = hitCardGo.GetComponent<EnemyCardView>();
-                if (enemyView != null)
+                if (enemyView != null && ActionSystem.Instance.isPerforming == false)
                 {
-                    EnemyTurnGA enemyTurnGA = new(enemyView);
-                    Debug.Log("Action created");
-                    ActionSystem.Instance.Perform(enemyTurnGA);
+                        EnemyTurnGA enemyTurnGA = new(enemyView);
+                        ActionSystem.Instance.Perform(enemyTurnGA);
                 }
 
                 // Only run heal
                 var healView = hitCardGo.GetComponent<HealCardView>();
-                if (healView != null)
+                if (healView != null && ActionSystem.Instance.isPerforming == false)
                 {
-                    HealGA healGA = new(healView);
-                    ActionSystem.Instance.Perform(healGA);
+                        HealGA healGA = new(healView);
+                        ActionSystem.Instance.Perform(healGA);
                 }
 
                 // Only run statup
                 var statupView = hitCardGo.GetComponent<StatupCardView>();
-                if (statupView != null)
+                if (statupView != null && ActionSystem.Instance.isPerforming == false)
                 {
-                    StatupGA statupGA = new(statupView);
-                    ActionSystem.Instance.Perform(statupGA);
+                        StatupGA statupGA = new(statupView);
+                        ActionSystem.Instance.Perform(statupGA);
                 }
 
             }
