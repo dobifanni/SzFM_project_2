@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce8276de8f49aa4cafd5ad486390259, type: 3}
+  m_Name: SpecialFloorStatup
+  m_EditorClassIdentifier: 
+  <FloorCards>k__BackingField:
+  - {fileID: 11400000, guid: ce24c24e98a8fc445b0c9c7d5d084e13, type: 2}
+  - {fileID: 11400000, guid: 9948bafb815919943ac51a2356170fe9, type: 2}
+  - {fileID: 11400000, guid: a202504af551f34469bf287f29c8e5a6, type: 2}
+  - {fileID: 11400000, guid: 9948bafb815919943ac51a2356170fe9, type: 2}
+  - {fileID: 11400000, guid: a202504af551f34469bf287f29c8e5a6, type: 2}
+  - {fileID: 11400000, guid: ce24c24e98a8fc445b0c9c7d5d084e13, type: 2}
