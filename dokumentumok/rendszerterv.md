@@ -174,9 +174,21 @@ flowchart LR
 
 ### Megvalósítás folyamatának modellje
 
+A projekt egy meghatározott kezdési időponttal indul, ekkor létrehozzák a szükséges munkafelületeket (GitHub, Trello). Rendszeres megbeszélések során kiosztják a feladatokat és megtervezik a heti sprinteket.
+
+A sprint végén a csapat értékeli az eredményeket, és eldönti, hogy a projekt készen áll-e a bemutatóra. Ha nem, újratervezés következik; ha igen, elkészül a bemutató.
+
+A projekt akkor zárul le, amikor a bemutató elfogadásra kerül, és megtörténik a játék kiadása.
+
 ![Megvalósításmodell](./images/uzletimodellek/megvalositasmodel.png)
 
 ### Szolgáltatlás folyamatának modellje
+
+A folyamat a felhasználó érdeklődésével indul: értesül a játékról, felkeresi a játék oldalát, majd eldönti, megvásárolja-e. Ha megveszi, letölti és kipróbálja.
+
+A játékosok értékelései (pl. Steam Reviews) visszakerülnek a fejlesztőkhöz, akik ezeket feldolgozzák, megbeszéléseket tartanak, majd szükség szerint frissítéseket vagy DLC-ket készítenek.
+
+Az update vagy új tartalom feltöltésre kerül a Steamre, erről a felhasználók értesülnek. A rendszer így egy folyamatos körfolyamatot alkot: felhasználói visszajelzés → fejlesztés → frissítés → új visszajelzés.
 
 ![Szolgáltatásmodell](./images/uzletimodellek/szolgaltatasmodel.png)
 
